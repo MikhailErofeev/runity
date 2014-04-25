@@ -1,9 +1,9 @@
-h1 {
-    color: red;
-}
-
 body {
     padding-top: 50px;
+}
+
+#main {
+    border: 1px solid black;
 }
 
 .container-full {
@@ -12,7 +12,7 @@ body {
 }
 
 .main-content-area {
-    padding-top: 5px;
+    padding-top: 10px;
     padding-bottom: 10px;
 }
 
