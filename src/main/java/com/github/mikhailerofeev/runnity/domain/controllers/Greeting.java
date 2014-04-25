@@ -1,4 +1,4 @@
-package com.github.mikhailerofeev.runnity.rest.dto;
+package com.github.mikhailerofeev.runnity.domain.controllers;
 
 /**
  * @author Mikhail Erofeev https://github.com/MikhailErofeev

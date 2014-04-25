@@ -1,6 +1,5 @@
-package com.github.mikhailerofeev.runnity.rest.controllers;
+package com.github.mikhailerofeev.runnity.domain.controllers;
 
-import com.github.mikhailerofeev.runnity.rest.dto.Greeting;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

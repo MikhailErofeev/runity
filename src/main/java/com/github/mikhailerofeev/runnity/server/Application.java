@@ -6,7 +6,7 @@ import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableAutoConfiguration
 @Configuration
 @EntityScan("com.github.mikhailerofeev.runnity")
-@EnableJpaRepositories("com.github.mikhailerofeev.runnity")
+@EnableMongoRepositories("com.github.mikhailerofeev.runnity")
 public class Application extends WebMvcConfigurerAdapter {
 
   @Bean
