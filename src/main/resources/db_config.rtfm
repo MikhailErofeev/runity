@@ -1,0 +1,8 @@
+-- mysql -uroot 
+
+CREATE USER 'mars'@'localhost' IDENTIFIED BY 'mars';
+
+CREATE DATABASE expdbtest COLLATE utf8_general_ci;
+GRANT ALL ON expdbtest.* TO 'ang'@'localhost';
+CREATE DATABASE marsdbtest COLLATE utf8_general_ci;
+GRANT ALL ON marsdbtest.* TO 'mars'@'localhost';

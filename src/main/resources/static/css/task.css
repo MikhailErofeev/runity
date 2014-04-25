@@ -1,0 +1,28 @@
+.task {
+    position: absolute;
+    background: lightskyblue;
+    border-style: solid;
+    border-color: cornflowerblue;
+    border-width: 1px;
+    border-radius: 5px;
+    margin-left: 2px;
+}
+
+.task.partial-begin {
+    border-bottom-style: none;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.task.partial-end {
+    border-top-style: none;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-top: -4px;
+}
+
+.task.otherPlanetTime {
+    border-color: lawngreen;
+    background: greenyellow;
+    opacity: 0.3;
+}
