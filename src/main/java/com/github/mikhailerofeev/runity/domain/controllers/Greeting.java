@@ -1,4 +1,4 @@
-package com.github.mikhailerofeev.runnity.domain.controllers;
+package com.github.mikhailerofeev.runity.domain.controllers;
 
 /**
  * @author Mikhail Erofeev https://github.com/MikhailErofeev

@@ -1,4 +1,4 @@
-package com.github.mikhailerofeev.runnity.server;
+package com.github.mikhailerofeev.runity.server;
 
 import org.springframework.stereotype.Component;
 

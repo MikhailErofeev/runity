@@ -1,6 +1,5 @@
-package com.github.mikhailerofeev.runnity.domain.values;
+package com.github.mikhailerofeev.runity.domain.values;
 
-import com.sun.javafx.beans.annotations.NonNull;
 
 /**
  * @author m-erofeev
@@ -10,26 +9,26 @@ public class ParamValue {
   private String dataId;
   private String value;
 
-  ParamValue(@NonNull String dataId, @NonNull String value) {
+  ParamValue( String dataId,  String value) {
     this.dataId = dataId;
     this.value = value;
   }
 
-  @NonNull
+  
   public String getDataId() {
     return dataId;
   }
 
-  public void setDataId(@NonNull String dataId) {
+  public void setDataId( String dataId) {
     this.dataId = dataId;
   }
 
-  @NonNull
+  
   public String getValue() {
     return value;
   }
 
-  public void setValue(@NonNull String value) {
+  public void setValue( String value) {
     this.value = value;
   }
 

@@ -1,4 +1,4 @@
-package com.github.mikhailerofeev.runnity.domain.controllers;
+package com.github.mikhailerofeev.runity.domain.controllers;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,15 @@ public class GreetingsController {
   @ResponseBody
   Greeting greeting(Authentication authentication, WebRequest webRequest) {
     String userName = authentication == null ? "Anonymous" : authentication.getName();
+
+
+    testMongo();
+
     return new Greeting(String.format("Hello, %s!", userName));
+  }
+
+  private void testMongo() {
+
   }
 
 }

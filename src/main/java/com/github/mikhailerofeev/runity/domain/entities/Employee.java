@@ -1,6 +1,6 @@
-package com.github.mikhailerofeev.runnity.domain.entities;
+package com.github.mikhailerofeev.runity.domain.entities;
 
-import com.github.mikhailerofeev.runnity.domain.values.ParamValue;
+import com.github.mikhailerofeev.runity.domain.values.ParamValue;
 import com.google.gson.Gson;
 import org.springframework.data.annotation.Id;
 

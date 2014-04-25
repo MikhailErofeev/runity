@@ -1,6 +1,6 @@
-package com.github.mikhailerofeev.runnity.domain.repository;
+package com.github.mikhailerofeev.runity.domain.repository;
 
-import com.github.mikhailerofeev.runnity.domain.entities.Employee;
+import com.github.mikhailerofeev.runity.domain.entities.Employee;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
