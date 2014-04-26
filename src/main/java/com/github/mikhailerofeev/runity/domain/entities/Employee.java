@@ -1,8 +1,8 @@
 package com.github.mikhailerofeev.runity.domain.entities;
 
-import com.beust.jcommander.internal.Maps;
 import com.github.mikhailerofeev.runity.domain.values.ParamValueWithVersionId;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;

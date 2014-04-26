@@ -11,6 +11,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -33,5 +34,6 @@ public class EmployeeServiceTest {
     e.setStructure(new Structure("Russia"));
     final Employee putinSaved = employeeService.save(e);
     assertNotNull(putinSaved.getStructure().getId());
+    assertEquals("Russia", putinSaved.getStructure().getName());
   }
 }
