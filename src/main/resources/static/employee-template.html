@@ -9,19 +9,20 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2><a href="#!/employee/<%= id %>"><%= name %></a><br/>
-                        <small><%= post %></small></h2>
+                        <small><%= post %></small>
+                    </h2>
                 </div>
             </div>
             <% _.each(model.attributes, function(attribute) { %>
-                <% if (attribute == 'id' || attribute == 'name') continue; %>
-                <div class="row">
-                    <div class="col-md-4">
-                        <%= attribute %>
-                    </div>
-                    <div class="col-md-8">
-                        <%= model.get(attribute) %>
-                    </div>
+            <% if (attribute == 'id' || attribute == 'name') continue; %>
+            <div class="row">
+                <div class="col-md-4">
+                    <%= attribute %>
                 </div>
+                <div class="col-md-8">
+                    <%= model.get(attribute) %>
+                </div>
+            </div>
             <% }); %>
         </div>
     </div>

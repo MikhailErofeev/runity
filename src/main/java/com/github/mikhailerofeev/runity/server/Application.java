@@ -14,12 +14,12 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableAutoConfiguration
 @Configuration
 @EnableMongoRepositories("com.github.mikhailerofeev.runity")
-public class Application{
+public class Application {
 
-  public static void main(String[] args) {
-    new SpringApplicationBuilder(Application.class)
-        .showBanner(false)
-        .run(args);
-  }      
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(Application.class)
+                .showBanner(false)
+                .run(args);
+    }
 
 }

@@ -17,7 +17,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 
 /**
@@ -32,74 +33,74 @@ import static org.junit.Assert.*;
 public class EmployeeRepositoryTest {
 
 
-  @Autowired
-  private EmployeeRepository employeeRepository;
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
-  @Autowired
-  private StructureRepository structureRepository;
+    @Autowired
+    private StructureRepository structureRepository;
 
-  @Autowired
-  private MongoTemplate mongoTemplate;
-
-
-  @Before
-  public void beforeDown() {
-    mongoTemplate.getDb().dropDatabase();
-  }
-
-  @SuppressWarnings("unchecked")
-  @Test
-  public void testMongo() {
-    employeeRepository.save(new Employee("Alice"));
-    employeeRepository.save(new Employee("Bob"));
-
-    final List<Employee> all = employeeRepository.findAll();
-    assertEquals(2, all.size());
-
-    final Employee alice = employeeRepository.findByName("Alice");
-    assertNotNull(alice);
-  }
-
-  @Test
-  public void testComplexObject() {
-    employeeRepository.save(new Employee("Misha"));
-    final Employee man = employeeRepository.findByName("Misha");
-    man.addParam("status", new ParamValueWithVersionId("magic", "student", true));
-    final Employee saved = employeeRepository.save(man);
-    assertEquals("student", saved.getActualParamVaue("status"));
-    final Employee retrieved = employeeRepository.findOne(man.getId());
-    assertEquals("student", retrieved.getActualParamVaue("status"));
-
-    retrieved.addParam("status", new ParamValueWithVersionId("magic", "president", true));
-    employeeRepository.save(retrieved);
-    final Employee president = employeeRepository.findOne(man.getId());
-    assertEquals("president", president.getActualParamVaue("status"));
-  }
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
 
-  @Test
-  public void testComplex2() {
-    Employee e = new Employee("Akakiy Akakievich");
-    e.addParam("status", new ParamValueWithVersionId("magic", "obesyana chi-chi-chi", true));
-    e.addParam("status", new ParamValueWithVersionId("magic", "prosecutor", false));
-    e.addParam("car", new ParamValueWithVersionId("magic", "hohohorse", false));
-    final Employee save = employeeRepository.save(e);
-    final Employee retrieve = employeeRepository.findOne(save.getId());
-    assertEquals(save, retrieve);
-  }
+    @Before
+    public void beforeDown() {
+        mongoTemplate.getDb().dropDatabase();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testMongo() {
+        employeeRepository.save(new Employee("Alice"));
+        employeeRepository.save(new Employee("Bob"));
+
+        final List<Employee> all = employeeRepository.findAll();
+        assertEquals(2, all.size());
+
+        final Employee alice = employeeRepository.findByName("Alice");
+        assertNotNull(alice);
+    }
+
+    @Test
+    public void testComplexObject() {
+        employeeRepository.save(new Employee("Misha"));
+        final Employee man = employeeRepository.findByName("Misha");
+        man.addParam("status", new ParamValueWithVersionId("magic", "student", true));
+        final Employee saved = employeeRepository.save(man);
+        assertEquals("student", saved.getActualParamVaue("status"));
+        final Employee retrieved = employeeRepository.findOne(man.getId());
+        assertEquals("student", retrieved.getActualParamVaue("status"));
+
+        retrieved.addParam("status", new ParamValueWithVersionId("magic", "president", true));
+        employeeRepository.save(retrieved);
+        final Employee president = employeeRepository.findOne(man.getId());
+        assertEquals("president", president.getActualParamVaue("status"));
+    }
 
 
-  @Test
-  public void testStructures() {
-    Employee e = new Employee("Putin");
-    final Structure russia = structureRepository.save(new Structure("Russia"));
-    e.setStructure(russia);
-    final Employee putinSaved = employeeRepository.save(e);
-    assertNotNull(putinSaved.getStructure().getId());
-  }
+    @Test
+    public void testComplex2() {
+        Employee e = new Employee("Akakiy Akakievich");
+        e.addParam("status", new ParamValueWithVersionId("magic", "obesyana chi-chi-chi", true));
+        e.addParam("status", new ParamValueWithVersionId("magic", "prosecutor", false));
+        e.addParam("car", new ParamValueWithVersionId("magic", "hohohorse", false));
+        final Employee save = employeeRepository.save(e);
+        final Employee retrieve = employeeRepository.findOne(save.getId());
+        assertEquals(save, retrieve);
+    }
 
-  @After
-  public void tearDown() {
-    mongoTemplate.getDb().dropDatabase();
-  }
+
+    @Test
+    public void testStructures() {
+        Employee e = new Employee("Putin");
+        final Structure russia = structureRepository.save(new Structure("Russia"));
+        e.setStructure(russia);
+        final Employee putinSaved = employeeRepository.save(e);
+        assertNotNull(putinSaved.getStructure().getId());
+    }
+
+    @After
+    public void tearDown() {
+        mongoTemplate.getDb().dropDatabase();
+    }
 }

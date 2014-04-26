@@ -26,15 +26,15 @@ import static org.junit.Assert.assertNotNull;
 @DirtiesContext
 public class EmployeeServiceTest {
 
-  @Autowired
-  EmployeeService employeeService;
+    @Autowired
+    EmployeeService employeeService;
 
-  @Test
-  public void testSave() throws Exception {
-    Employee e = new Employee("Putin");
-    e.setStructure(new Structure("Russia"));
-    final Employee putinSaved = employeeService.save(e);
-    assertNotNull(putinSaved.getStructure().getId());
-    assertEquals("Russia", putinSaved.getStructure().getName());
-  }
+    @Test
+    public void testSave() throws Exception {
+        Employee e = new Employee("Putin");
+        e.setStructure(new Structure("Russia"));
+        final Employee putinSaved = employeeService.save(e);
+        assertNotNull(putinSaved.getStructure().getId());
+        assertEquals("Russia", putinSaved.getStructure().getName());
+    }
 }

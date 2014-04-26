@@ -9,6 +9,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  */
 public interface StructureRepository extends MongoRepository<Structure, String> {
 
-  public Structure findByName(String name);
+    public Structure findByName(String name);
 
 }

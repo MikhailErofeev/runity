@@ -16,20 +16,20 @@ import org.springframework.web.context.request.WebRequest;
 @Deprecated //for testing purposes
 public class GreetingsController {
 
-  @RequestMapping(value = "/rest/v1/greeting", method = RequestMethod.GET)
-  public
-  @ResponseBody
-  Greeting greeting(Authentication authentication, WebRequest webRequest) {
-    String userName = authentication == null ? "Anonymous" : authentication.getName();
+    @RequestMapping(value = "/rest/v1/greeting", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Greeting greeting(Authentication authentication, WebRequest webRequest) {
+        String userName = authentication == null ? "Anonymous" : authentication.getName();
 
 
-    testMongo();
+        testMongo();
 
-    return new Greeting(String.format("Hello, %s!", userName));
-  }
+        return new Greeting(String.format("Hello, %s!", userName));
+    }
 
-  private void testMongo() {
+    private void testMongo() {
 
-  }
+    }
 
 }

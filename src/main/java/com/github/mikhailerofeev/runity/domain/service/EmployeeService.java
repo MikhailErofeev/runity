@@ -14,22 +14,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmployeeService {
 
-  @Autowired
-  EmployeeRepository employeeRepository;
+    @Autowired
+    EmployeeRepository employeeRepository;
 
-  @Autowired
-  StructureRepository structureRepository;
+    @Autowired
+    StructureRepository structureRepository;
 
-  public Employee save(Employee e) {
-    if (e.getStructure() != null && e.getStructure().getId() == null) {
-      final Structure founded = structureRepository.findByName(e.getStructure().getName());
-      if (founded == null) {
-        e.setStructure(structureRepository.save(e.getStructure()));
-      } else {
-        e.setStructure(founded);
-      }
+    public Employee save(Employee e) {
+        if (e.getStructure() != null && e.getStructure().getId() == null) {
+            final Structure founded = structureRepository.findByName(e.getStructure().getName());
+            if (founded == null) {
+                e.setStructure(structureRepository.save(e.getStructure()));
+            } else {
+                e.setStructure(founded);
+            }
+        }
+        return employeeRepository.save(e);
     }
-    return employeeRepository.save(e);
-  }
 
 }
