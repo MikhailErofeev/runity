@@ -23,16 +23,16 @@ public class EmployeeController {
 
   @PostConstruct
   public void testFill() {
-    Employee testEmployee = employeeRepository.findByName("Akakiy Akakievich");
+    Employee testEmployee = employeeRepository.findByName("Борис Борисович Гребенщиков");
     if (testEmployee == null) {
-      testEmployee = new Employee("Akakiy Akakievich");
-      testEmployee.addParam("status", new ParamValueWithVersionId("magic", "obesyana chi-chi-chi", true));
-      testEmployee.addParam("status", new ParamValueWithVersionId("magic", "prosecutor", false));
-      testEmployee.addParam("car", new ParamValueWithVersionId("magic", "hohohorse", false));
+      testEmployee = new Employee("Борис Борисович Гребенщиков");
+      testEmployee.addParam("post", new ParamValueWithVersionId("magic", "Это Бог, от него сияние исходит", true));
+      testEmployee.addParam("status", new ParamValueWithVersionId("magic", "Музыкант", false));
+      testEmployee.addParam("education", new ParamValueWithVersionId("magic", "инженер", true));
+      testEmployee.addParam("high school", new ParamValueWithVersionId("magic", "ЛГУ матмех", true));
       testEmployee = employeeRepository.save(testEmployee);
     }
     System.out.println(testEmployee.getId());
-
   }
 
   @RequestMapping(value = "/rest/v1/employee/{id}", method = RequestMethod.GET)
