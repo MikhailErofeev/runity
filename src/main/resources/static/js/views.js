@@ -8,8 +8,8 @@ var EmployeeView = Backbone.View.extend({
 
     render: function () {
         console.log("start render employee view");
-        console.log(model);
-        disqusInit('http://localhost:8080#!/employee/' + model.getId());
+        console.log(this.model);
+        disqusInit('http://localhost:8080#!/employee/' + this.model.get("id"));
         return this;
     }
 
