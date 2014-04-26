@@ -76,4 +76,10 @@ public class DataUploadService {
         paramValue = StringUtils.strip(paramValue, " ");
         return paramValue;
     }
+
+    public void filterUnimportant(List<Map<String, String>> sourceEmployeesData, List<String> importantParams) {
+        for (Map<String, String> sourceEmployee : sourceEmployeesData) {
+            sourceEmployee.keySet().retainAll(importantParams);
+        }
+    }
 }
