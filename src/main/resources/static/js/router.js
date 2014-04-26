@@ -13,9 +13,8 @@ var Controller = Backbone.Router.extend({
         console.log("at main")
     },
 
-    employee: function (person) {
-        console.log("at employee " + person)
-        var disqus_url = "#!/employee/" + person;
+    employee: function (employeeID) {
+        console.log("at employee " + employeeID)
     }
 });
 
