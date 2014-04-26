@@ -3,6 +3,7 @@ package com.github.mikhailerofeev.runity.domain.repository;
 import com.github.mikhailerofeev.runity.domain.entities.Employee;
 import com.github.mikhailerofeev.runity.domain.values.ParamValueWithVersionId;
 import com.github.mikhailerofeev.runity.server.Application;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 
 /**
@@ -64,6 +66,19 @@ public class EmployeeRepositoryTest {
     repository.save(retrieved);
     final Employee president = repository.findOne(man.getId());
     assertEquals("president", president.getActualParamVaue("status"));
+  }
+
+
+  @Test
+  public void testJson() {
+    Employee e = new Employee("Akakiy Akakievich");
+    e.addParam("status", new ParamValueWithVersionId("magic", "obesyana chi-chi-chi", true));
+    e.addParam("status", new ParamValueWithVersionId("magic", "prosecutor", false));
+    e.addParam("car", new ParamValueWithVersionId("magic", "hohohorse", false));
+    final Employee save = repository.save(e);
+    final Employee retrieve = repository.findOne(save.getId());
+    assertTrue(EqualsBuilder.reflectionEquals(save, retrieve, true));
+    System.out.println(retrieve.toString());
   }
 
   @After

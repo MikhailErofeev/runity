@@ -10,6 +10,9 @@ public class ParamValueWithVersionId {
   private String value;
   private boolean actual;
 
+  public ParamValueWithVersionId() {
+  }
+
   public ParamValueWithVersionId(String versionId, String value, boolean actual) {
     this.versionId = versionId;
     this.value = value;

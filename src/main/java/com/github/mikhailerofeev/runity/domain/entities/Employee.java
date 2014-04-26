@@ -1,5 +1,6 @@
 package com.github.mikhailerofeev.runity.domain.entities;
 
+import com.beust.jcommander.internal.Maps;
 import com.github.mikhailerofeev.runity.domain.values.ParamValueWithVersionId;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
@@ -30,7 +31,12 @@ public class Employee {
 
   public Employee(String name) {
     this.name = name;
-    param2valueAndVersion = Collections.EMPTY_MAP;
+    param2valueAndVersion = Maps.newHashMap();
+  }
+
+  public Employee(String name, Map<String, ArrayList<ParamValueWithVersionId>> param2valueAndVersion) {
+    this.name = name;
+    this.param2valueAndVersion = param2valueAndVersion;
   }
 
   public String getId() {
