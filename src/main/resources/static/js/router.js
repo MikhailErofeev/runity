@@ -11,10 +11,12 @@ var Controller = Backbone.Router.extend({
 
     main: function () {
         console.log("at main")
+        disqusInit('http://localhost:8080#!');
     },
 
     employee: function (employeeID) {
-        console.log("at employee " + employeeID)
+        console.log("at employee " + employeeID);
+        disqusInit('http://localhost:8080#!/employee/bg');
     }
 });
 
