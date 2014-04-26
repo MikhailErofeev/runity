@@ -7,6 +7,7 @@ var Controller = Backbone.Router.extend({
     routes: {
         "": "main",
         "#": "main",
+        "!/data": "data",
         "!/employee/:person": "employee"
     },
 
@@ -15,16 +16,12 @@ var Controller = Backbone.Router.extend({
         disqusInit('http://localhost:8080');
     },
 
+    data: function () {
+        console.log("data");
+        uploadView.render();
+    },
+
     employee: function (employeeID) {
-        var template = $('#employee-template');
-
-        if (template.length == 0) {
-
-        }
-
-//        if (employeeView.template === null)
-//            employeeView.template = _.template(template.html());
-
         var employeeLoaded = loadEmployee(employeeID);
         employeeView.model.set(employeeLoaded);
     }

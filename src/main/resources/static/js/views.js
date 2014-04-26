@@ -20,4 +20,21 @@ var EmployeeView = Backbone.View.extend({
 
 });
 
+var UploadView = Backbone.View.extend({
+
+    render: function () {
+//        console.log("start render employee view");
+//        console.log(this.model);
+
+        if (this.template === undefined || this.template === null)
+            this.template = _.template($('#data-template').html());
+
+        $('#content-container').html(this.template());
+        disqusInit('http://localhost:8080#!/data');
+        return this;
+    }
+
+});
+
 var employeeView = new EmployeeView();
+var uploadView = new UploadView();
