@@ -35,6 +35,7 @@
                 <span class="glyphicon glyphicon-search"></span>
             </button>
         </form>
+        <a href="#!/data" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-save"></span></a>
     </div>
     <!-- /.container-->
 </div>
@@ -54,7 +55,8 @@
                     <% if (has('photo')) { %>
                     <img src="<%= get(photo) %>" alt="171x180">
                     <% } else { %>
-                    <img src="http://img1.wikia.nocookie.net/__cb20081222131347/ru.starwars/images/0/03/Palpatine_Naboo.jpg" alt="171x180">
+                    <img src="http://img1.wikia.nocookie.net/__cb20081222131347/ru.starwars/images/0/03/Palpatine_Naboo.jpg"
+                         alt="171x180">
                     <% } %>
                 </div>
             </div>
@@ -62,7 +64,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2><a href="#!/employee/<%= get('id') %>"><%= get('name') %></a><br/>
-                            <small><%= get('param2valueAndVersion')['post'][0]['value'] %></small></h2>
+                            <small><%= get('param2valueAndVersion')['post'][0]['value'] %></small>
+                        </h2>
                     </div>
                 </div>
                 <% for (var attribute in get('param2valueAndVersion')) { %>
@@ -91,24 +94,96 @@
 
 <script id="data-template" type="text/template">
     <div class="col-md-offset-2 col-md-8">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="columns-names">
-                    col1<br>
-                    col2<br>
-                    col3<br>
-                    col4<br>
+        <form>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="columns-names">
+                        <div class="form-group">
+                            <label for="allColumns">Соотвествующие названия колонок</label>
+                            <textarea id="allColumns" type="text" cols="30" rows="15" required="required"></textarea>
+
+                            <p class="help-block">Каждая с новой строки. Обязательно присутствие name</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="columns-names">
+                        <div class="form-group">
+                            <label for="importantColums">Колонки, которые нужно сохранить</label>
+                            <textarea id="importantColums" type="text" cols="30" rows="15"
+                                      required="required"></textarea>
+
+                            <p class="help-block">Каждая с новой строки. Обязательно присутствие name</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="columns-names">
+                        <div class="form-group">
+                            <label for="additionalColums">Дополнительные одинаковые ключ:значение поля</label>
+                            <textarea id="additionalColums" type="text" cols="30" rows="15"
+                                      placeholder="key:value"></textarea>
+
+                            <p class="help-block">Разделение двоеточием, каждая пара с новой строки</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-8">
-                upload btn
-            </div>
-        </div>
+            <!--<div class="row">-->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Тип данных</label>
 
-        <div class="row">
-            <div id="disquss" class="col-md-12">
-                <div id="disqus_thread"></div>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default">
+                                <input required="required" type="radio" id="employee" checked
+                                       value="employee">Служащий</input></label>
+                            <label class="btn btn-default" disabled>
+                                <input type="radio" id="structure" value="structure">Структура</input></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="desc">Описание</label>
+                        <textarea id="desc" required="required" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                    <div class="form-group">
+                        <label for="author">Автор</label>
+                        <input type="text" id="author" required="required" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="url">Ссылка на источник</label>
+                        <input type="text" id="url" required="required" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                    <div class="form-group">
+                        <label for="day">Дата появления данных</label>
+                        <input id="day" type="date" required="required" class="form-control">
+                    </div>
+                    <br/>
+
+                    <div class="form-group">
+                        <label for="csv">CSV файл данных</label>
+                        <input type="file" id="csv" required="required" accept=".csv"/>
+                    </div>
+                    <br/>
+                </div>
             </div>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-5">
+                    <button type="submit" class="btn btn-info">Сохранить</button>
+                </div>
+            </div>
+        </form>
+        <div id="disquss" class="col-md-12">
+            <div id="disqus_thread"></div>
         </div>
     </div>
 </script>
