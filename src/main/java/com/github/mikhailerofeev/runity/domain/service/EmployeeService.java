@@ -1,4 +1,4 @@
-package com.github.mikhailerofeev.runity.domain;
+package com.github.mikhailerofeev.runity.domain.service;
 
 import com.github.mikhailerofeev.runity.domain.entities.Employee;
 import com.github.mikhailerofeev.runity.domain.entities.Structure;
