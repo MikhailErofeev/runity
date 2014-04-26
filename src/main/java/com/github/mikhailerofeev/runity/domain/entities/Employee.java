@@ -5,6 +5,7 @@ import com.github.mikhailerofeev.runity.domain.values.ParamValueWithVersionId;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,6 +21,9 @@ public class Employee {
   @Id
   private String id;
   private String name;
+
+  @Transient
+  private String structureName;
 
   //detalisation for mongo purpose
   private Map<String, ArrayList<ParamValueWithVersionId>> param2valueAndVersion;
@@ -49,6 +53,14 @@ public class Employee {
 
   public Map<String, ArrayList<ParamValueWithVersionId>> getParam2valueAndVersion() {
     return Collections.unmodifiableMap(param2valueAndVersion);
+  }
+
+  public String getStructureName() {
+    return structureName;
+  }
+
+  public void setStructureName(String structureName) {
+    this.structureName = structureName;
   }
 
   @Override
@@ -81,6 +93,31 @@ public class Employee {
       }
     }
     return null;
+  }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Employee)) return false;
+
+    Employee employee = (Employee) o;
+
+    if (id != null ? !id.equals(employee.id) : employee.id != null) return false;
+    if (name != null ? !name.equals(employee.name) : employee.name != null) return false;
+    if (param2valueAndVersion != null ? !param2valueAndVersion.equals(employee.param2valueAndVersion) : employee.param2valueAndVersion != null)
+      return false;
+    if (structureName != null ? !structureName.equals(employee.structureName) : employee.structureName != null)
+      return false;
+
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    result = 31 * result + (structureName != null ? structureName.hashCode() : 0);
+    result = 31 * result + (param2valueAndVersion != null ? param2valueAndVersion.hashCode() : 0);
+    return result;
   }
 }

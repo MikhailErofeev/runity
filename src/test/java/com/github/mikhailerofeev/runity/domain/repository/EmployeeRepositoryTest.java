@@ -3,8 +3,8 @@ package com.github.mikhailerofeev.runity.domain.repository;
 import com.github.mikhailerofeev.runity.domain.entities.Employee;
 import com.github.mikhailerofeev.runity.domain.values.ParamValueWithVersionId;
 import com.github.mikhailerofeev.runity.server.Application;
-import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 /**
@@ -38,6 +36,12 @@ public class EmployeeRepositoryTest {
 
   @Autowired
   private MongoTemplate mongoTemplate;
+
+
+  @Before
+  public void beforeDown() {
+    mongoTemplate.getDb().dropDatabase();
+  }
 
   @SuppressWarnings("unchecked")
   @Test
@@ -75,9 +79,13 @@ public class EmployeeRepositoryTest {
     e.addParam("status", new ParamValueWithVersionId("magic", "obesyana chi-chi-chi", true));
     e.addParam("status", new ParamValueWithVersionId("magic", "prosecutor", false));
     e.addParam("car", new ParamValueWithVersionId("magic", "hohohorse", false));
+    e.setStructureName("Jerusalem prosecutor office");
     final Employee save = repository.save(e);
     final Employee retrieve = repository.findOne(save.getId());
-    assertTrue(EqualsBuilder.reflectionEquals(save, retrieve, true));
+    assertNotEquals(save.getStructureName(), retrieve.getStructureName());
+    assertNotEquals(save, retrieve);
+    save.setStructureName(null);
+    assertEquals(save, retrieve);
   }
 
   @After

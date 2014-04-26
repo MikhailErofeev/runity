@@ -16,13 +16,18 @@ import java.util.Map;
  */
 
 @RestController
-public class EmployeeController {
+@RequestMapping(value = "/rest/v1/")
+public class DataController {
 
   @Autowired
   EmployeeRepository employeeRepository;
 
   @PostConstruct
-  public void testFill() {
+  public void postConstruct() {
+//    testFill();
+  }
+
+  private void testFill() {
     Employee testEmployee = employeeRepository.findByName("Борис Борисович Гребенщиков");
     if (testEmployee == null) {
       testEmployee = new Employee("Борис Борисович Гребенщиков");
@@ -35,13 +40,13 @@ public class EmployeeController {
     System.out.println(testEmployee.getId());
   }
 
-  @RequestMapping(value = "/rest/v1/employee/{id}", method = RequestMethod.GET)
+  @RequestMapping(value = "/employee/{id}", method = RequestMethod.GET)
   @ResponseBody
   public Employee get(@PathVariable("id") String id) {
     return employeeRepository.findOne(id);
   }
 
-  @RequestMapping(value = "/rest/v1/employee", method = RequestMethod.GET)
+  @RequestMapping(value = "/employee", method = RequestMethod.GET)
   @ResponseBody
   public Map<String, String> get() {
 
