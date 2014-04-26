@@ -16,10 +16,16 @@ var Controller = Backbone.Router.extend({
     },
 
     employee: function (employeeID) {
-        console.log("at employee  router " + employeeID);
+        var template = $('#employee-template');
+
+        if (template.length == 0) {
+
+        }
+
+//        if (employeeView.template === null)
+//            employeeView.template = _.template(template.html());
+
         var employeeLoaded = loadEmployee(employeeID);
-        console.log(employeeLoaded);
-        console.log(employeeLoaded.get("name"));
         employeeView.model.set(employeeLoaded);
     }
 });

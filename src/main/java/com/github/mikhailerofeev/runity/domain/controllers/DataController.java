@@ -24,7 +24,7 @@ public class DataController {
 
   @PostConstruct
   public void postConstruct() {
-//    testFill();
+    testFill();
   }
 
   private void testFill() {

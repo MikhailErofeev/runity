@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/runity.iml" filepath="$PROJECT_DIR$/runity.iml" />
       <module fileurl="file://$PROJECT_DIR$/runnity.iml" filepath="$PROJECT_DIR$/runnity.iml" />
     </modules>
   </component>

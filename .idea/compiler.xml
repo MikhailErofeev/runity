@@ -22,10 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="runity" />
         <module name="runnity" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="runity" target="1.6" />
       <module name="runnity" target="1.6" />
     </bytecodeTargetLevel>
   </component>

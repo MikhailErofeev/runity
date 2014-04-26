@@ -41,32 +41,26 @@
 <!-- /.navbar -->
 
 <div class="container">
-    <div id="content-container" class="row">
-        <script id="employee-template" type="text/template">
+    <div class="row">
         <div class="col-md-offset-2 col-md-8">
             <div class="row">
                 <div class="col-md-4">
                     <div class="thumbnail">
-                        <img src="" alt="171x180">
+                        <img src="http://upload.rb.ru/upload/archive/imgsmall/20090805151003.jpg" alt="171x180">
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2><a href="#!/employee/<%= id %>"><%= name %></a><br/>
-                                <small></small></h2>
+                            <h2><a href="#">Vladimir Putin</a><br/>
+                                <small>President</small></h2>
                         </div>
                     </div>
-                    <% for (var attribute in attributes) { %>
                     <div class="row">
-                        <div class="col-md-4">
-                            <%= attribute %>
-                        </div>
-                        <div class="col-md-8">
-                            <%= get(attribute) %>
+                        <div class="col-md-12">
+
                         </div>
                     </div>
-                    <% }; %>
                 </div>
             </div>
 
@@ -76,7 +70,6 @@
                 </div>
             </div>
         </div>
-        </script>
     </div>
 </div>
 <!-- /.container -->
