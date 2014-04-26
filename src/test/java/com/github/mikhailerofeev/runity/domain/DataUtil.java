@@ -32,6 +32,7 @@ public class DataUtil {
     final public String judgeParamName = "Мировой судья";
     final public String filePath = "src/test/resources/data.csv";
     public List<Map<String, String>> sourceEmployeesData;
+    public DataPassport dataPassport;
 
     public void uploadTestData() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(
@@ -42,9 +43,7 @@ public class DataUtil {
         final String url = "http://data.gov.spb.ru/datasets/6170/";
         final String text = "This a test data passport made for fun and profit";
         final DateTime date = new DateTime(2014, 4, 15, 0, 0, 0);
-        final DataPassport dataPassport = new DataPassport(author, url, text, date);
-
-
+        dataPassport = new DataPassport(author, url, text, date);
         dataUploadService.employeesUpload(sourceEmployeesData, judgeParamName, dataPassport);
     }
 }

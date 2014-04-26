@@ -1,12 +1,13 @@
 package com.github.mikhailerofeev.runity.domain.service;
 
 import com.github.mikhailerofeev.runity.domain.DataUtil;
+import com.github.mikhailerofeev.runity.domain.entities.DataPassport;
 import com.github.mikhailerofeev.runity.domain.entities.Employee;
+import com.github.mikhailerofeev.runity.domain.repository.DataPassportRepository;
 import com.github.mikhailerofeev.runity.domain.repository.EmployeeRepository;
 import com.github.mikhailerofeev.runity.domain.values.ParamValueWithVersionId;
 import com.github.mikhailerofeev.runity.server.Application;
-import com.google.common.collect.Lists;
-import junit.framework.TestCase;
+import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,20 +18,25 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static junit.framework.TestCase.assertNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by Максим on 26.04.2014.
  */
 //todo annotation
+@SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @ActiveProfiles("test")
 @DirtiesContext
-public class DataUploadServiceTest extends TestCase {
+public class DataUploadServiceTest {
 
     @Autowired
     MongoTemplate mongoTemplate;
@@ -41,6 +47,8 @@ public class DataUploadServiceTest extends TestCase {
     @Autowired
     EmployeeRepository employeeRepository;
 
+    @Autowired
+    DataPassportRepository dataPassportRepository;
     @Autowired
     DataUtil dataUtil;
 
@@ -60,12 +68,14 @@ public class DataUploadServiceTest extends TestCase {
     }
 
     @Test
-    public void testPassport(){
+    public void testPassport() {
         final Employee employee = employeeRepository.findByName("Колесова Инна Максимовна");
         Map<String, ArrayList<ParamValueWithVersionId>> param2valueAndVersion = employee.getParam2valueAndVersion();
-        final List<ParamValueWithVersionId> values = param2valueAndVersion.get("Район");
+        final List<ParamValueWithVersionId> values;
+        values = param2valueAndVersion.get("Район");
         assertNotNull(values.get(0).getVersionId());
-
+        DataPassport passport = dataPassportRepository.findOne(values.get(0).getVersionId());
+        assertEquals(dataUtil.dataPassport.getAuthor(), passport.getAuthor());
     }
 
 

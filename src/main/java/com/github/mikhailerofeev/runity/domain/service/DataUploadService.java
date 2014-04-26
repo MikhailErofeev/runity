@@ -36,6 +36,8 @@ public class DataUploadService {
 
     public void employeesUpload(List<Map<String, String>> filteredDataSet,
                                 String employeeNameFiled, DataPassport dataPassport) {
+        final DataPassport savedDataPassport = dataPassportRepository.save(dataPassport);
+        final String savedVersionInfoId = savedDataPassport.getId();
         for (Map<String, String> employerData : filteredDataSet) {
             String name = employerData.remove(employeeNameFiled);
             if (StringUtils.isBlank(name)) {
@@ -43,8 +45,6 @@ public class DataUploadService {
             }
             final Employee employee = getOrCreateEmployer(name);
             for (Map.Entry<String, String> param2value : employerData.entrySet()) {
-                final DataPassport savedDataPassport = dataPassportRepository.save(dataPassport);
-                final String savedVersionInfoId = savedDataPassport.getId();
                 final ParamValueWithVersionId paramValue = new ParamValueWithVersionId(savedVersionInfoId,
                         param2value.getValue(), true);
                 employee.addParam(param2value.getKey(), paramValue);
