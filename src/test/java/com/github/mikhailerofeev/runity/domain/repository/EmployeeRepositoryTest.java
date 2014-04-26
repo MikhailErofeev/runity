@@ -70,7 +70,7 @@ public class EmployeeRepositoryTest {
 
 
   @Test
-  public void testJson() {
+  public void testComplex2() {
     Employee e = new Employee("Akakiy Akakievich");
     e.addParam("status", new ParamValueWithVersionId("magic", "obesyana chi-chi-chi", true));
     e.addParam("status", new ParamValueWithVersionId("magic", "prosecutor", false));
@@ -78,7 +78,6 @@ public class EmployeeRepositoryTest {
     final Employee save = repository.save(e);
     final Employee retrieve = repository.findOne(save.getId());
     assertTrue(EqualsBuilder.reflectionEquals(save, retrieve, true));
-    System.out.println(retrieve.toString());
   }
 
   @After
