@@ -2,6 +2,7 @@ package com.github.mikhailerofeev.runity.domain.service;
 
 import com.github.mikhailerofeev.runity.domain.entities.Employee;
 import com.github.mikhailerofeev.runity.domain.repository.EmployeeRepository;
+import com.github.mikhailerofeev.runity.domain.values.ParamValueWithVersionId;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,12 +24,26 @@ public class DataUploadService {
   
   
   public void rawData(List<String> names, List<List<String>> data, String src, DateTime dataTime){
-      for (List<String> row : data) {
-          List<Map<String, String>> region = new ArrayList<Map<String, String>>();
-          for (int i = 0; i < row.size(); ++i) {
-            Map<String, String> linkedField = new HashMap<String, String>();
-            linkedField.put(names.get(i) ,row.get(i));
-            region.add(linkedField);
+      for (final List<String> row : data) {
+          List<String> namesWithPost = new ArrayList<String>();
+          final String region = row.get(0);
+
+          namesWithPost.add(row.get(3));
+          namesWithPost.add(row.get(4));
+          namesWithPost.add(row.get(5));
+          namesWithPost.add(row.get(6));
+
+          for (int i = 0; i < namesWithPost.size(); ++i) {
+              final String name = namesWithPost.get(i);
+              Employee e = employeeRepository.findByName(name);
+              if(e == null){
+                  e = new Employee(name);
+              }
+              //sorry for i + 3, this is an offset to role names
+              e.addParam("post", new ParamValueWithVersionId("magic",names.get(i+3),true));
+              e.addParam("region", new ParamValueWithVersionId("magic", region,true));
+
+              employeeRepository.save(e);
           }
       }
   }
