@@ -15,8 +15,8 @@ public class DataPassport {
     private String text;
     private DateTime date;
 
-    public DataPassport(String login, String url, String text, DateTime date){
-        this.author = login;
+    public DataPassport(String author, String url, String text, DateTime date){
+        this.author = author;
         this.url = url;
         this.text = text;
         this.date = date;

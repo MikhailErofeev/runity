@@ -1,8 +1,10 @@
 package com.github.mikhailerofeev.runity.domain;
 
+import com.github.mikhailerofeev.runity.domain.entities.DataPassport;
 import com.github.mikhailerofeev.runity.domain.repository.EmployeeRepository;
 import com.github.mikhailerofeev.runity.domain.service.DataUploadService;
 import com.google.common.collect.Lists;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
@@ -36,6 +38,13 @@ public class DataUtil {
                 new InputStreamReader(new FileInputStream(new File(filePath))));
         sourceEmployeesData = dataUploadService.parseCsvToStructuredMap(paramNames, bufferedReader);
         dataUploadService.filterUnimportant(sourceEmployeesData, importantParams);
-        dataUploadService.employeesUpload(sourceEmployeesData, judgeParamName);
+        final String author = "Max Skorohodov";
+        final String url = "http://data.gov.spb.ru/datasets/6170/";
+        final String text = "This a test data passport made for fun and profit";
+        final DateTime date = new DateTime(2014, 4, 15, 0, 0, 0);
+        final DataPassport dataPassport = new DataPassport(author, url, text, date);
+
+
+        dataUploadService.employeesUpload(sourceEmployeesData, judgeParamName, dataPassport);
     }
 }
