@@ -10,8 +10,10 @@ var EmployeeView = Backbone.View.extend({
 //        console.log("start render employee view");
 //        console.log(this.model);
 
-        this.template = _.template($('#employee-template').html());
-        $('#content-container').html(this.template(this.model.attributes));
+        if (this.template === undefined || this.template === null)
+            this.template = _.template($('#employee-template').html());
+
+        $('#content-container').html(this.template(this.model.changed));
         disqusInit('http://localhost:8080#!/employee/' + this.model.get("id"));
         return this;
     }
