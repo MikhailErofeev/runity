@@ -2,6 +2,7 @@ package com.github.mikhailerofeev.runity.domain;
 
 import com.github.mikhailerofeev.runity.domain.entities.Employee;
 import com.github.mikhailerofeev.runity.domain.entities.Structure;
+import com.github.mikhailerofeev.runity.domain.service.EmployeeService;
 import com.github.mikhailerofeev.runity.server.Application;
 import org.junit.Test;
 import org.junit.runner.RunWith;
