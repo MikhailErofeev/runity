@@ -22,14 +22,7 @@ public class GreetingsController {
     Greeting greeting(Authentication authentication, WebRequest webRequest) {
         String userName = authentication == null ? "Anonymous" : authentication.getName();
 
-
-        testMongo();
-
         return new Greeting(String.format("Hello, %s!", userName));
-    }
-
-    private void testMongo() {
-
     }
 
 }

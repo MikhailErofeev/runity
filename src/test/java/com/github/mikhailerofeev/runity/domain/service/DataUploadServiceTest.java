@@ -1,13 +1,11 @@
 package com.github.mikhailerofeev.runity.domain.service;
 
-import com.github.mikhailerofeev.runity.domain.DataUtil;
-import com.github.mikhailerofeev.runity.domain.entities.DataPassport;
+import com.github.mikhailerofeev.runity.domain.TestDataUtil;
 import com.github.mikhailerofeev.runity.domain.entities.Employee;
 import com.github.mikhailerofeev.runity.domain.repository.DataPassportRepository;
 import com.github.mikhailerofeev.runity.domain.repository.EmployeeRepository;
 import com.github.mikhailerofeev.runity.domain.values.ParamValueWithVersionId;
 import com.github.mikhailerofeev.runity.server.Application;
-import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,13 +47,14 @@ public class DataUploadServiceTest {
 
     @Autowired
     DataPassportRepository dataPassportRepository;
+
     @Autowired
-    DataUtil dataUtil;
+    TestDataUtil testDataUtil;
 
     @org.junit.Before
     public void beforeDown() throws IOException {
         mongoTemplate.getDb().dropDatabase();
-        dataUtil.uploadTestData();
+        testDataUtil.uploadTestData();
     }
 
     @Test

@@ -1,6 +1,6 @@
 package com.github.mikhailerofeev.runity.domain.service;
 
-import com.github.mikhailerofeev.runity.domain.DataUtil;
+import com.github.mikhailerofeev.runity.domain.TestDataUtil;
 import com.github.mikhailerofeev.runity.domain.entities.Employee;
 import com.github.mikhailerofeev.runity.domain.repository.EmployeeRepository;
 import com.github.mikhailerofeev.runity.server.Application;
@@ -40,12 +40,12 @@ public class SearchServiceTest {
     EmployeeRepository employeeRepository;
 
     @Autowired
-    DataUtil dataUtil;
+    TestDataUtil testDataUtil;
 
     @org.junit.Before
     public void before() throws IOException {
         mongoTemplate.getDb().dropDatabase();
-        dataUtil.uploadTestData();
+        testDataUtil.uploadTestData();
     }
 
     @Test

@@ -94,23 +94,25 @@
 
 <script id="data-template" type="text/template">
     <div class="col-md-offset-2 col-md-8">
-        <form>
+        <form method="post" action="/rest/v1/upload/" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-4">
                     <div class="columns-names">
                         <div class="form-group">
                             <label for="allColumns">Соотвествующие названия колонок</label>
-                            <textarea id="allColumns" type="text" cols="30" rows="15" required="required"></textarea>
+                            <textarea id="allColumns" name="allColumns" type="text" cols="30" rows="15"
+                                      required="required"></textarea>
 
-                            <p class="help-block">Каждая с новой строки. Обязательно присутствие name</p>
+                            <p class="help-block">Каждая с новой строки. Обязательно присутствие "name". Можно добавить
+                                "photo", значения должны быть абсолютными ссылками </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="columns-names">
                         <div class="form-group">
-                            <label for="importantColums">Колонки, которые нужно сохранить</label>
-                            <textarea id="importantColums" type="text" cols="30" rows="15"
+                            <label for="importantColumns">Колонки, которые нужно сохранить</label>
+                            <textarea id="importantColumns" name="importantColumns" type="text" cols="30" rows="15"
                                       required="required"></textarea>
 
                             <p class="help-block">Каждая с новой строки. Обязательно присутствие name</p>
@@ -120,8 +122,8 @@
                 <div class="col-md-4">
                     <div class="columns-names">
                         <div class="form-group">
-                            <label for="additionalColums">Дополнительные одинаковые ключ:значение поля</label>
-                            <textarea id="additionalColums" type="text" cols="30" rows="15"
+                            <label for="additionalColumns">Дополнительные одинаковые ключ:значение поля</label>
+                            <textarea id="additionalColumns" name="additionalColumns" type="text" cols="30" rows="15"
                                       placeholder="key:value"></textarea>
 
                             <p class="help-block">Разделение двоеточием, каждая пара с новой строки</p>
@@ -137,41 +139,43 @@
 
                         <div class="btn-group" data-toggle="buttons">
                             <label class="btn btn-default">
-                                <input required="required" type="radio" id="employee" checked
+                                <input required="required" name="type" type="radio" id="employee" checked
                                        value="employee">Служащий</input></label>
                             <label class="btn btn-default" disabled>
-                                <input type="radio" id="structure" value="structure">Структура</input></label>
+                                <input type="radio" id="structure" name="type" value="structure">Структура</input>
+                            </label>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="desc">Описание</label>
-                        <textarea id="desc" required="required" class="form-control"></textarea>
+                        <label for="description">Описание</label>
+                        <textarea id="description" required="required" name="description"
+                                  class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="col-md-4">
 
                     <div class="form-group">
                         <label for="author">Автор</label>
-                        <input type="text" id="author" required="required" class="form-control">
+                        <input type="text" id="author" name="author" required="required" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="url">Ссылка на источник</label>
-                        <input type="text" id="url" required="required" class="form-control">
+                        <input type="text" id="url" name="url" required="required" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-4">
 
                     <div class="form-group">
                         <label for="day">Дата появления данных</label>
-                        <input id="day" type="date" required="required" class="form-control">
+                        <input id="day" type="date" name="date" required="required" class="form-control">
                     </div>
                     <br/>
 
                     <div class="form-group">
                         <label for="csv">CSV файл данных</label>
-                        <input type="file" id="csv" required="required" accept=".csv"/>
+                        <input type="file" id="csv" name="csv" required="required" accept=".csv"/>
                     </div>
                     <br/>
                 </div>
