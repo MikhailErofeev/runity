@@ -26,7 +26,7 @@ var EmployeeView = Backbone.View.extend({
         if (this.template === undefined || this.template === null)
             this.template = _.template($('#employee-template').html());
 
-        $('#content-container').html(this.template(this.model.changed));
+        $('#content-container').html(this.template(this.model.attributes.toJSON()));
         disqusInit('http://localhost:8080#!/employee/' + this.model.get("id"));
 
 

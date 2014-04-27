@@ -6,7 +6,6 @@
 var Controller = Backbone.Router.extend({
     routes: {
         "": "main",
-        "#": "main",
         "!/data": "data",
         "!/employee/:person": "employee",
         "!/search/:query": "search"
@@ -38,7 +37,6 @@ var Controller = Backbone.Router.extend({
 $(document).ready(function () {
     var controller = new Controller();
     Backbone.history.start();
-    controller.route("#!/");
 
     $('#employee-search-button').mouseover(function() {
         var inputValue = $('#employee-search-input').val();

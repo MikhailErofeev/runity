@@ -69,8 +69,8 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="thumbnail">
-                        <% if ('photo' in get('param2valueAndVersion')) { %>
-                            <img src="<%= get('param2valueAndVersion')['photo'][0]['value'] %>" alt="171x180">
+                        <% if ('photo' in param2valueAndVersion) { %>
+                            <img src="<%= param2valueAndVersion['photo'][0]['value'] %>" alt="171x180">
                         <% } else { %>
                             <img src="http://img1.wikia.nocookie.net/__cb20081222131347/ru.starwars/images/0/03/Palpatine_Naboo.jpg" alt="171x180">
                         <% } %>
@@ -80,19 +80,19 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h2>
-                                <a href="#!/employee/<%= get('id') %>"><%= get('name') %></a><br/>
-                                <% if ('post' in get('param2valueAndVersion')) { %>
-                                    <small><%= get('param2valueAndVersion')['post'][0]['value'] %></small>
-                                <% } else if ('Должность' in get('param2valueAndVersion')) { %>
-                                    <small><%= get('param2valueAndVersion')['Должность'][0]['value'] %></small>
+                                <a href="#!/employee/<%= id %>"><%= name %></a><br/>
+                                <% if ('post' in param2valueAndVersion) { %>
+                                    <small><%= param2valueAndVersion['post'][0]['value'] %></small>
+                                <% } else if ('Должность' in param2valueAndVersion) { %>
+                                    <small><%= param2valueAndVersion['Должность'][0]['value'] %></small>
                                 <% }; %>
                             </h2>
                         </div>
                     </div>
-                    <% for (var attribute in get('param2valueAndVersion')) { %>
+                    <% for (var attribute in param2valueAndVersion) { %>
                         <% if (attribute == 'post' || attribute == 'photo' || attribute == 'Должность') continue; %>
-                        <% for (var index in get('param2valueAndVersion')[attribute]) { %>
-                            <% var item = get('param2valueAndVersion')[attribute][index]; %>
+                        <% for (var index in param2valueAndVersion[attribute]) { %>
+                            <% var item = param2valueAndVersion[attribute][index]; %>
                             <% if (item['actual']) {%>
                             <div class="row">
                                 <div class="col-md-3">
@@ -107,17 +107,17 @@
                                 </a>
                             </div>
                     <% }}}; %>
-                    <% for (var attribute in get('paramRating')) { %>
+                    <% for (var attribute in paramRating) { %>
                     <div class="row">
                         <div class="col-md-3">
                             <%= attribute %>
                         </div>
                         <div class="col-md-4">
                             <div class="btn-group">
-                                <a type="button" class="btn btn-default" href="#!/employee/<%= get('id') %>/<%= get('attribute') %>/true">
+                                <a type="button" class="btn btn-default" href="#!/employee/<%= id %>/<%= attribute %>/true">
                                     <span class="glyphicon glyphicon-thumbs-up"></span>
                                 </a>
-                                <a type="button" class="btn btn-default" href="#!/employee/<%= get('id') %>/<%= get('attribute') %>/false">
+                                <a type="button" class="btn btn-default" href="#!/employee/<%= id %>/<%= attribute %>/false">
                                     <span class="glyphicon glyphicon-thumbs-down"></span>
                                 </a>
                             </div>
