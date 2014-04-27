@@ -1,7 +1,6 @@
 package com.github.mikhailerofeev.runity.domain.repository;
 
 import com.github.mikhailerofeev.runity.domain.entities.Employee;
-import com.github.mikhailerofeev.runity.domain.entities.Structure;
 import com.github.mikhailerofeev.runity.domain.values.ParamValueWithVersionId;
 import com.github.mikhailerofeev.runity.server.Application;
 import org.junit.After;
@@ -67,14 +66,14 @@ public class EmployeeRepositoryTest {
         final Employee man = employeeRepository.findByName("Misha");
         man.addParam("status", new ParamValueWithVersionId("magic", "student", true));
         final Employee saved = employeeRepository.save(man);
-        assertEquals("student", saved.getActualParamVaue("status"));
+        assertEquals("student", saved.getActualParamValue("status"));
         final Employee retrieved = employeeRepository.findOne(man.getId());
-        assertEquals("student", retrieved.getActualParamVaue("status"));
+        assertEquals("student", retrieved.getActualParamValue("status"));
 
         retrieved.addParam("status", new ParamValueWithVersionId("magic", "president", true));
         employeeRepository.save(retrieved);
         final Employee president = employeeRepository.findOne(man.getId());
-        assertEquals("president", president.getActualParamVaue("status"));
+        assertEquals("president", president.getActualParamValue("status"));
     }
 
 

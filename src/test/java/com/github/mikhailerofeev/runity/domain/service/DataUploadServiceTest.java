@@ -67,8 +67,8 @@ public class DataUploadServiceTest {
     @Test
     public void testUpload() throws IOException {
         final Employee employee = employeeRepository.findByName("Колесова Инна Максимовна");
-        assertEquals("Красногвардейский район", employee.getActualParamVaue("Район"));
-        assertNull(employee.getActualParamVaue("Код строения ЕАС"));
+        assertEquals("Красногвардейский район", employee.getActualParamValue("Район"));
+        assertNull(employee.getActualParamValue("Код строения ЕАС"));
         assertNull(employeeRepository.findByName(""));
         assertNotNull(employeeRepository.findByName("Алексеева Ольга Юрьевна"));
     }
@@ -77,7 +77,7 @@ public class DataUploadServiceTest {
     public void testStructuresUpload() throws IOException {
         final Structure structure = structureRepository.findByName("152");
         assertEquals("Петроградский район", structure.getActualParamVaue("Район"));
-        //assertNull(structure.getActualParamVaue("Код строения ЕАС"));
+        //assertNull(structure.getActualParamValue("Код строения ЕАС"));
         assertNull(employeeRepository.findByName(""));
         assertNotNull(structureRepository.findByName("152"));
     }

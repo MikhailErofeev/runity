@@ -74,7 +74,7 @@ public class Employee {
         values.add(newValue);
     }
 
-    public String getActualParamVaue(String paramName) {
+    public String getActualParamValue(String paramName) {
         final List<ParamValueWithVersionId> values = param2valueAndVersion.get(paramName);
         if (values == null) {
             return null;
