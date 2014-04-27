@@ -112,15 +112,15 @@
                         <div class="col-md-3">
                             <%= attribute %>
                         </div>
-                        <div class="col-md-4">
-                            <div class="btn-group">
-                                <a type="button" class="btn btn-default" href="#!/employee/<%= id %>/<%= attribute %>/true">
-                                    <span class="glyphicon glyphicon-thumbs-up"></span>
-                                </a>
-                                <a type="button" class="btn btn-default" href="#!/employee/<%= id %>/<%= attribute %>/false">
-                                    <span class="glyphicon glyphicon-thumbs-down"></span>
-                                </a>
-                            </div>
+                        <div class="col-md-2">
+                            <a type="button" class="btn btn-success btn-sm" href="#!/employee/<%= id %>/<%= attribute %>/true">
+                                <span class="glyphicon glyphicon-thumbs-up"></span> <span class="badge"><%= paramRating[attribute]['left'] %></span>
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a type="button" class="btn btn-danger btn-sm" href="#!/employee/<%= id %>/<%= attribute %>/false">
+                                <span class="glyphicon glyphicon-thumbs-down"></span> <span class="badge"><%= paramRating[attribute]['right'] %></span>
+                            </a>
                         </div>
                     </div>
                     <% }; %>
