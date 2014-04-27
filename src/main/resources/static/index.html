@@ -115,14 +115,14 @@
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-12">
-                        <h6>
+                        <h4>
                             <a href="#!/employee/<%= model.get('id') %>"><%= model.get('name') %></a><br/>
                             <% if ('post' in model.get('param2valueAndVersion')) { %>
                                 <small><%= model.get('param2valueAndVersion')['post'][0]['value'] %></small>
                             <% } else if ('Должность' in model.get('param2valueAndVersion')) { %>
                                 <small><%= model.get('param2valueAndVersion')['Должность'][0]['value'] %></small>
                             <% }; %>
-                        </h6>
+                        </h4>
                     </div>
                 </div>
                 <% for (var attribute in model.get('param2valueAndVersion')) { %>
