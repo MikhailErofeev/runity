@@ -6,7 +6,6 @@ import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -120,15 +119,17 @@ public class Employee {
     }
 
     public void increaseParamRating(String param) {
-        Pair<Integer, Integer> rating = this.paramRating.get(param);
-        Pair<Integer, Integer> newRating = Pair.of(rating.getKey() + 1, rating.getValue());
-        this.paramRating.remove(param);
-        this.paramRating.put(param, newRating);
+        alterRating(param, 1);
     }
 
     public void decreaseParamRating(String param) {
+        alterRating(param, -1);
+    }
+
+    private void alterRating(String param, int difference) {
         Pair<Integer, Integer> rating = this.paramRating.get(param);
-        Pair<Integer, Integer> newRating = Pair.of(rating.getKey(), rating.getValue() + 1);
+        Pair<Integer, Integer> newRating = (difference < 0) ?
+                Pair.of(rating.getKey() + difference, rating.getValue()) : Pair.of(rating.getKey(), rating.getValue() + difference);
         this.paramRating.remove(param);
         this.paramRating.put(param, newRating);
     }
