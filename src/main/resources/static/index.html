@@ -163,9 +163,8 @@
                                 <textarea id="allColumns" name="allColumns" type="text" cols="30" rows="15"
                                           required="required"></textarea>
 
-                                <p class="help-block">Каждая с новой строки. Обязательно присутствие "name". Можно добавить
-                                    "photo", значения должны быть абсолютными ссылками </p>
-                            </div>
+                            <p class="help-block">Каждая с новой строки. Обязательно присутствие "name". Можно добавить
+                                "photo", значения должны быть абсолютными ссылками. Точки будут сами удалены. </p>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -175,8 +174,7 @@
                                 <textarea id="importantColumns" name="importantColumns" type="text" cols="30" rows="15"
                                           required="required"></textarea>
 
-                                <p class="help-block">Каждая с новой строки. Обязательно присутствие name</p>
-                            </div>
+                            <p class="help-block">Каждая с новой строки. Обязательно присутствие name. Точки будут сами удалены.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -197,14 +195,13 @@
                         <div class="form-group">
                             <label>Тип данных</label>
 
-                            <div class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-default">
-                                    <input required="required" name="type" type="radio" id="employee" checked
-                                           value="employee">Служащий</input></label>
-                                <label class="btn btn-default" disabled>
-                                    <input type="radio" id="structure" name="type" value="structure">Структура</input>
-                                </label>
-                            </div>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default">
+                                <input required="required" name="type" type="radio" id="employee" checked
+                                       value="employee">Служащий</input></label>
+                            <label class="btn btn-default">
+                                <input type="radio" id="structure" name="type" value="structure">Структура</input>
+                            </label>
                         </div>
 
                         <div class="form-group">

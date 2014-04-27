@@ -4,7 +4,9 @@ import com.github.mikhailerofeev.runity.domain.entities.DataPassport;
 import com.github.mikhailerofeev.runity.domain.repository.DataPassportRepository;
 import com.github.mikhailerofeev.runity.domain.service.DataUploadService;
 import com.github.mikhailerofeev.runity.domain.service.DataUtils;
+import com.google.common.base.Function;
 import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,25 +43,33 @@ public class UploadController {
     @RequestMapping(value = "", headers = "content-type=multipart/*", method = RequestMethod.POST)
     public String upload(WebRequest webRequest, @RequestParam("csv") MultipartFile multipartFile) throws IOException, ServletException {
         final String author = webRequest.getParameter("author").trim();
-        final List<String> allColumns = splitByLines(webRequest.getParameter("allColumns"));
-        final List<String> importantColumns = splitByLines(webRequest.getParameter("importantColumns"));
+        final List<String> allColumns = removeDots(splitByLines(webRequest.getParameter("allColumns")));
+        final List<String> importantColumns = removeDots(splitByLines(webRequest.getParameter("importantColumns")));
         final Map<String, String> additionalConstants = splitToMap(splitByLines(webRequest.getParameter("additionalColumns")));
         final String description = webRequest.getParameter("description").trim();
         final String url = webRequest.getParameter("url").trim();
-        final boolean isEmployee = "employeee".equals(webRequest.getParameter("type"));
+        final boolean isEmployee = "employee".equals(webRequest.getParameter("type"));
         final BufferedReader csvReader = new BufferedReader(new InputStreamReader(multipartFile.getInputStream()));
         final List<Map<String, String>> niceCsv = DataUtils.parseCsvToStructuredMap(allColumns, csvReader);
         final DataPassport passport = dataPassportRepository.save(new DataPassport(author, url, description, DateTime.now()));
         DataUtils.filterUnimportant(niceCsv, importantColumns);
         addConstants(additionalConstants, niceCsv);
-        if(isEmployee) {
+        if (isEmployee) {
             dataUploadService.employeesUpload(niceCsv, "name", passport);
-        }
-        else{
+        } else {
             dataUploadService.structuresUpload(niceCsv, "name", passport);
         }
 
-        return "/";
+        return "redirect:/";
+    }
+
+    private List<String> removeDots(List<String> allColumns) {
+        return Lists.transform(allColumns, new Function<String, String>() {
+            @Override
+            public String apply(String input) {
+                return input.replaceAll("\\.", "");
+            }
+        });
     }
 
     private void addConstants(Map<String, String> additionalConstants, List<Map<String, String>> niceCsv) {
