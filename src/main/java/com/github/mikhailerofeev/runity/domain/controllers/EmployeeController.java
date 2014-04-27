@@ -107,7 +107,6 @@ public class EmployeeController {
     @ResponseBody
     public Employee paramRatingSet(@PathVariable("id") String id, @PathVariable("param") String param,
                                               @PathVariable("like") boolean like) throws Exception {
-
         return paramRatingService.upRatingParam(id, param, like);
     }
 }
