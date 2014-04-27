@@ -4,6 +4,15 @@ var MainView = Backbone.View.extend({
            this.template = _.template($('#main').html());
 
        $('#content-container').html(this.template());
+
+       $('#main-search-button').mouseover(function() {
+           var inputValue = $('#main-search-input').val();
+           if (inputValue.length != 0) {
+               $('#main-search-button').attr('href', '#!/search/' + inputValue);
+           } else {
+               $('#main-search-button').attr('href', '#');
+           }
+       });
        return this;
    }
 });
@@ -19,6 +28,9 @@ var EmployeeView = Backbone.View.extend({
 
         $('#content-container').html(this.template(this.model.changed));
         disqusInit('http://localhost:8080#!/employee/' + this.model.get("id"));
+
+
+
         return this;
     }
 });

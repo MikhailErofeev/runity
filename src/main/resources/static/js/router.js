@@ -41,31 +41,11 @@ $(document).ready(function () {
     controller.route("#!/");
 
     $('#employee-search-button').mouseover(function() {
-        console.dir($('#employee-search-input').val());
-        console.dir($('#employee-search-button'));
         var inputValue = $('#employee-search-input').val();
         if (inputValue.length != 0) {
             $('#employee-search-button').attr('href', '#!/search/' + inputValue);
         } else {
             $('#employee-search-button').attr('href', '#');
-        }
-    });
-
-    $('#employee-search-button').mouseover(function() {
-        var inputValue = $('#employee-search-input').val();
-        if (inputValue.length != 0) {
-            $('#employee-search-button').attr('href', '#!/search/' + inputValue);
-        } else {
-            $('#employee-search-button').attr('href', '#');
-        }
-    });
-
-    $('#main-search-button').mouseover(function() {
-        var inputValue = $('#main-search-input').val();
-        if (inputValue.length != 0) {
-            $('#main-search-button').attr('href', '#!/search/' + inputValue);
-        } else {
-            $('#main-search-button').attr('href', '#');
         }
     });
 });

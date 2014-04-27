@@ -107,20 +107,23 @@
                                 </a>
                             </div>
                     <% }}}; %>
-                    <br>
-                    <% var attrItems = ["Отзывчивость", "Бескорыстность","Эффективность"]; %>
-                    <% for (var index in attrItems) { %>
+                    <% for (var attribute in get('paramRating')) { %>
                     <div class="row">
                         <div class="col-md-3">
-                            <%= attrItems[index] %><br>
+                            <%= attribute %>
                         </div>
-                        <div class="col-md-8">
-                            <% var ratingVars = get() %>
-                            0 like 1 dislike <br>
+                        <div class="col-md-4">
+                            <div class="btn-group">
+                                <a type="button" class="btn btn-default" href="#!/employee/<%= get('id') %>/<%= get('attribute') %>/true">
+                                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                                </a>
+                                <a type="button" class="btn btn-default" href="#!/employee/<%= get('id') %>/<%= get('attribute') %>/false">
+                                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <% }; %>
-
                 </div>
             </div>
 
