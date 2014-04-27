@@ -4,6 +4,7 @@ import com.github.mikhailerofeev.runity.domain.values.ParamValueWithVersionId;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
@@ -27,6 +28,7 @@ public class Employee {
 
     //detalisation for mongo purpose
     private Map<String, ArrayList<ParamValueWithVersionId>> param2valueAndVersion;
+    private Map<String, Pair<Integer, Integer>> paramRating;
 
     //for seriazation purposes
     Employee() {
@@ -36,11 +38,13 @@ public class Employee {
     public Employee(String name) {
         this.name = name;
         param2valueAndVersion = Maps.newHashMap();
+        paramRating = Maps.newHashMap();
     }
 
     public Employee(String name, Map<String, ArrayList<ParamValueWithVersionId>> param2valueAndVersion) {
         this.name = name;
         this.param2valueAndVersion = param2valueAndVersion;
+        paramRating = Maps.newHashMap();
     }
 
     public String getId() {
@@ -116,5 +120,27 @@ public class Employee {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (param2valueAndVersion != null ? param2valueAndVersion.hashCode() : 0);
         return result;
+    }
+
+    public Map<String, Pair<Integer, Integer>> getParamRating() {
+        return paramRating;
+    }
+
+    public void addParamRating(String param) {
+        this.paramRating.put(param, Pair.of(0, 0));
+    }
+
+    public void increaseParamRating(String param) {
+        Pair<Integer, Integer> rating = this.paramRating.get(param);
+        Pair<Integer, Integer> newRating = Pair.of(rating.getKey() + 1, rating.getValue());
+        this.paramRating.remove(param);
+        this.paramRating.put(param, newRating);
+    }
+
+    public void decreaseParamRating(String param) {
+        Pair<Integer, Integer> rating = this.paramRating.get(param);
+        Pair<Integer, Integer> newRating = Pair.of(rating.getKey(), rating.getValue() + 1);
+        this.paramRating.remove(param);
+        this.paramRating.put(param, newRating);
     }
 }
