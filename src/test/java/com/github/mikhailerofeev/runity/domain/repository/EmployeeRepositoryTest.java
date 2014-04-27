@@ -90,15 +90,6 @@ public class EmployeeRepositoryTest {
     }
 
 
-    @Test
-    public void testStructures() {
-        Employee e = new Employee("Putin");
-        final Structure russia = structureRepository.save(new Structure("Russia"));
-        e.setStructure(russia);
-        final Employee putinSaved = employeeRepository.save(e);
-        assertNotNull(putinSaved.getStructure().getId());
-    }
-
     @After
     public void tearDown() {
         mongoTemplate.getDb().dropDatabase();

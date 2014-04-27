@@ -23,9 +23,6 @@ public class Employee {
     private String id;
     private String name;
 
-    @DBRef
-    private Structure structure;
-
     //detalisation for mongo purpose
     private Map<String, ArrayList<ParamValueWithVersionId>> param2valueAndVersion;
     private Map<String, Pair<Integer, Integer>> paramRating;
@@ -57,14 +54,6 @@ public class Employee {
 
     public Map<String, ArrayList<ParamValueWithVersionId>> getParam2valueAndVersion() {
         return Collections.unmodifiableMap(param2valueAndVersion);
-    }
-
-    public Structure getStructure() {
-        return structure;
-    }
-
-    public void setStructure(Structure structure) {
-        this.structure = structure;
     }
 
     @Override

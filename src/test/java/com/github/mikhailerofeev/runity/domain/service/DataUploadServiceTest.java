@@ -3,8 +3,10 @@ package com.github.mikhailerofeev.runity.domain.service;
 import com.github.mikhailerofeev.runity.domain.TestDataUtil;
 import com.github.mikhailerofeev.runity.domain.entities.DataPassport;
 import com.github.mikhailerofeev.runity.domain.entities.Employee;
+import com.github.mikhailerofeev.runity.domain.entities.Structure;
 import com.github.mikhailerofeev.runity.domain.repository.DataPassportRepository;
 import com.github.mikhailerofeev.runity.domain.repository.EmployeeRepository;
+import com.github.mikhailerofeev.runity.domain.repository.StructureRepository;
 import com.github.mikhailerofeev.runity.domain.values.ParamValueWithVersionId;
 import com.github.mikhailerofeev.runity.server.Application;
 import org.junit.After;
@@ -52,10 +54,14 @@ public class DataUploadServiceTest {
     @Autowired
     TestDataUtil testDataUtil;
 
+    @Autowired
+    StructureRepository structureRepository;
+
     @org.junit.Before
     public void beforeDown() throws IOException {
         mongoTemplate.getDb().dropDatabase();
         testDataUtil.uploadTestData();
+        testDataUtil.uploadTestStructureData();
     }
 
     @Test
@@ -65,6 +71,15 @@ public class DataUploadServiceTest {
         assertNull(employee.getActualParamVaue("Код строения ЕАС"));
         assertNull(employeeRepository.findByName(""));
         assertNotNull(employeeRepository.findByName("Алексеева Ольга Юрьевна"));
+    }
+
+    @Test
+    public void testStructuresUpload() throws IOException {
+        final Structure structure = structureRepository.findByName("152");
+        assertEquals("Петроградский район", structure.getActualParamVaue("Район"));
+        //assertNull(structure.getActualParamVaue("Код строения ЕАС"));
+        assertNull(employeeRepository.findByName(""));
+        assertNotNull(structureRepository.findByName("152"));
     }
 
     @Test

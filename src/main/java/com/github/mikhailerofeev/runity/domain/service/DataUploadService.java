@@ -3,8 +3,10 @@ package com.github.mikhailerofeev.runity.domain.service;
 
 import com.github.mikhailerofeev.runity.domain.entities.DataPassport;
 import com.github.mikhailerofeev.runity.domain.entities.Employee;
+import com.github.mikhailerofeev.runity.domain.entities.Structure;
 import com.github.mikhailerofeev.runity.domain.repository.DataPassportRepository;
 import com.github.mikhailerofeev.runity.domain.repository.EmployeeRepository;
+import com.github.mikhailerofeev.runity.domain.repository.StructureRepository;
 import com.github.mikhailerofeev.runity.domain.values.ParamValueWithVersionId;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class DataUploadService {
 
     @Autowired
     private DataPassportRepository dataPassportRepository;
+
+    @Autowired
+    private StructureRepository structureRepository ;
 
     public void employeesUpload(List<Map<String, String>> filteredDataSet,
                                 String employeeNameFiled, DataPassport dataPassport) {
@@ -52,5 +57,33 @@ public class DataUploadService {
             e = new Employee(name);
         }
         return e;
+    }
+
+    public void structuresUpload(List<Map<String, String>> filteredDataSet,
+                                String structureNameFiled, DataPassport dataPassport) {
+        final DataPassport savedDataPassport = dataPassportRepository.save(dataPassport);
+        final String savedVersionInfoId = savedDataPassport.getId();
+        for (Map<String, String> employerData : filteredDataSet) {
+            String name =  employerData.remove(structureNameFiled);
+            if (StringUtils.isBlank(name)) {
+                continue;
+            }
+            final Structure structure = getOrCreateStructure(name);
+            for (Map.Entry<String, String> param2value :  employerData.entrySet()) {
+                final ParamValueWithVersionId paramValue = new ParamValueWithVersionId(savedVersionInfoId,
+                        param2value.getValue(), true);
+                structure.addParam(param2value.getKey(), paramValue);
+            }
+            structureRepository.save(structure);
+        }
+    }
+
+
+    private Structure getOrCreateStructure(String name) {
+        Structure s = structureRepository.findByName(name);
+        if (s == null) {
+            s = new Structure(name);
+        }
+        return s;
     }
 }

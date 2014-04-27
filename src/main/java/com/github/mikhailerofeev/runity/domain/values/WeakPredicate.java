@@ -23,9 +23,7 @@ public class WeakPredicate implements Predicate<Employee> {
     @Override
     public boolean apply(Employee employee) {
         boolean isNameContainsQuery = StringUtils.contains(employee.getName(), srcQuery);
-        Structure structure = employee.getStructure();
-        boolean isStructureContainsQuery = structure != null && StringUtils.contains(structure.getName(), srcQuery);
-        boolean hasAnyMatches = isNameContainsQuery || isStructureContainsQuery || checkEmployeeForQueue(srcQuery, employee);
+        boolean hasAnyMatches = isNameContainsQuery || checkEmployeeForQueue(srcQuery, employee);
         return hasAnyMatches;
     }
 

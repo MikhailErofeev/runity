@@ -52,7 +52,13 @@ public class UploadController {
         final DataPassport passport = dataPassportRepository.save(new DataPassport(author, url, description, DateTime.now()));
         DataUtils.filterUnimportant(niceCsv, importantColumns);
         addConstants(additionalConstants, niceCsv);
-        dataUploadService.employeesUpload(niceCsv, "name", passport);
+        if(isEmployee) {
+            dataUploadService.employeesUpload(niceCsv, "name", passport);
+        }
+        else{
+            dataUploadService.structuresUpload(niceCsv, "name", passport);
+        }
+
         return "/rest/v1/employee/";
     }
 

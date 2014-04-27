@@ -12,24 +12,13 @@ import org.springframework.stereotype.Service;
  * @since 26.04.14
  */
 @Service
-public class EmployeeService {
-
-    @Autowired
-    EmployeeRepository employeeRepository;
+public class StructureService {
 
     @Autowired
     StructureRepository structureRepository;
 
-    public Employee save(Employee e) {
-        if (e.getStructure() != null && e.getStructure().getId() == null) {
-            final Structure founded = structureRepository.findByName(e.getStructure().getName());
-            if (founded == null) {
-                e.setStructure(structureRepository.save(e.getStructure()));
-            } else {
-                e.setStructure(founded);
-            }
-        }
-        return employeeRepository.save(e);
+    public Structure save(Structure s) {
+        return structureRepository.save(s);
     }
 
 }

@@ -29,8 +29,11 @@ public class TestDataUtil {
             "Мировой судья");
 
     final public String judgeParamName = "Мировой судья";
+    final public String numberParamName = "Номер судебного участка";
+
     final public String filePath = "src/test/resources/data.csv";
     public List<Map<String, String>> sourceEmployeesData;
+    public List<Map<String, String>> sourceStructuresData;
     public DataPassport dataPassport;
 
     public void uploadTestData() throws IOException {
@@ -45,4 +48,19 @@ public class TestDataUtil {
         dataPassport = new DataPassport(author, url, text, date);
         dataUploadService.employeesUpload(sourceEmployeesData, judgeParamName, dataPassport);
     }
+
+    public void uploadTestStructureData() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(
+                new InputStreamReader(new FileInputStream(new File(filePath))));
+        sourceStructuresData = DataUtils.parseCsvToStructuredMap(paramNames, bufferedReader);
+        DataUtils.filterUnimportant(sourceStructuresData, paramNames);
+        final String author = "Max Skorohodov";
+        final String url = "http://data.gov.spb.ru/datasets/6170/";
+        final String text = "This a test data passport made for fun and profit (structure version)";
+        final DateTime date = new DateTime(2014, 4, 15, 0, 0, 0);
+        dataPassport = new DataPassport(author, url, text, date);
+        dataUploadService.structuresUpload(sourceStructuresData, numberParamName, dataPassport);
+    }
+
+
 }

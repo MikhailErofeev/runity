@@ -2,6 +2,7 @@ package com.github.mikhailerofeev.runity.domain.controllers;
 
 import com.github.mikhailerofeev.runity.domain.entities.Employee;
 import com.github.mikhailerofeev.runity.domain.repository.EmployeeRepository;
+import com.github.mikhailerofeev.runity.domain.service.ParamRatingService;
 import com.github.mikhailerofeev.runity.domain.values.ParamValueWithVersionId;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class EmployeeController {
 
     @Autowired
     EmployeeRepository employeeRepository;
+
+    @Autowired
+    ParamRatingService paramRatingService;
 
     @PostConstruct
     public void postConstruct() {
@@ -91,11 +95,19 @@ public class EmployeeController {
     @ResponseBody
     public Map<String, String> get() {
 
+
         Map<String, String> ids2name = Maps.newHashMap();
         for (Employee employee : employeeRepository.findAll()) {
             ids2name.put(employee.getId(), employee.getName());
         }
         return ids2name;
+    }
 
+    @RequestMapping(value = "/{id}/{param}/{like}", method = RequestMethod.GET)
+    @ResponseBody
+    public Employee paramRatingSet(@PathVariable("id") String id, @PathVariable("param") String param,
+                                              @PathVariable("like") boolean like) throws Exception {
+
+        return paramRatingService.upRatingParam(id, param, like);
     }
 }
