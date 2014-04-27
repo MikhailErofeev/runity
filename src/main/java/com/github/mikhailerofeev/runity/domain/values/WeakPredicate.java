@@ -22,7 +22,7 @@ public class WeakPredicate implements Predicate<Employee> {
 
     @Override
     public boolean apply(Employee employee) {
-        boolean isNameContainsQuery = StringUtils.contains(employee.getName(), srcQuery);
+        boolean isNameContainsQuery = StringUtils.contains(employee.getName().toLowerCase(), srcQuery.toLowerCase());
         boolean hasAnyMatches = isNameContainsQuery || checkEmployeeForQueue(srcQuery, employee);
         return hasAnyMatches;
     }
@@ -33,7 +33,7 @@ public class WeakPredicate implements Predicate<Employee> {
         for (Map.Entry<String, ArrayList<ParamValueWithVersionId>> paramName2Versions : employeeFields.entrySet()) {
             if (paramName2Versions.getValue() != null) {
                 for (ParamValueWithVersionId versionedParam : paramName2Versions.getValue()) {
-                    if (StringUtils.contains(versionedParam.getValue(), query)) {
+                    if (StringUtils.contains(versionedParam.getValue().toLowerCase(), query.toLowerCase())) {
                         return true;
                     }
                 }

@@ -29,19 +29,20 @@ public class EqPredicate implements Predicate<Employee> {
     public boolean apply(Employee employee) {
         Map<String, ArrayList<ParamValueWithVersionId>> employeeFields = employee.getParam2valueAndVersion();
 
+
         if (StringUtils.equals(operator, EQUAL_ACTION)) {
             if (StringUtils.equals(this.key, "name")) {
                 return StringUtils.equals(employee.getName(), value);
             }
 
-            if (StringUtils.equals(this.key, "versionId")) {
+            if (StringUtils.equals(this.key, "versionId".toLowerCase())) {
                 return checkForVersionIDEquals(employeeFields);
             }
             if(employeeFields.get(key) == null){
                 return false;
             }
             for (ParamValueWithVersionId paramValueWithVersionId : employeeFields.get(key)) {
-                if (StringUtils.equals(paramValueWithVersionId.getValue(), this.value))
+                if (StringUtils.equals(paramValueWithVersionId.getValue().toLowerCase(), this.value.toLowerCase()))
                     return true;
             }
             return false;
@@ -50,7 +51,7 @@ public class EqPredicate implements Predicate<Employee> {
                 return !StringUtils.equals(employee.getName(), value);
             }
 
-            if (StringUtils.equals(this.key, "versionId")) {
+            if (StringUtils.equals(this.key, "versionId".toLowerCase())) {
                 return !checkForVersionIDEquals(employeeFields);
             }
             if(employeeFields.get(key) == null){
@@ -58,7 +59,7 @@ public class EqPredicate implements Predicate<Employee> {
             }
 
             for (ParamValueWithVersionId paramValueWithVersionId : employeeFields.get(key)) {
-                if (StringUtils.equals(paramValueWithVersionId.getValue(), this.value))
+                if (StringUtils.equals(paramValueWithVersionId.getValue().toLowerCase(), this.value.toLowerCase()))
                     return false;
             }
             return true;

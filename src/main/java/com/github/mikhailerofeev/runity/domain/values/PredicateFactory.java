@@ -16,7 +16,7 @@ public class PredicateFactory {
     final private static String EQUAL_OPERATOR = "==";
     final private static String NON_EQUAL_OPERATOR = "!=";
     final private static Pattern KEY_PATTERN = Pattern.compile("[а-яА-Яa-zA-Z .]+(!=|==)");
-    final private static Pattern VALUE_PATTERN = Pattern.compile("(!=|==)[а-яА-Яa-zA-Z .]+");
+    final private static Pattern VALUE_PATTERN = Pattern.compile("(!=|==)[а-яА-Яa-zA-Z .-]+");
 
     public static Predicate<Employee> create(String query) {
         for (String operator : Lists.newArrayList(EQUAL_OPERATOR, NON_EQUAL_OPERATOR)) {

@@ -24,6 +24,7 @@ public class SearchService {
     public List<Employee> search(String query) {
         Predicate<Employee> predicate = PredicateFactory.create(query);
         final List<Employee> employees = employeeRepository.findAll();
-        return Lists.newArrayList(Collections2.filter(employees, predicate));
+        final List<Employee> filteredEmployees = Lists.newArrayList(Collections2.filter(employees, predicate));
+        return filteredEmployees;
     }
 }
