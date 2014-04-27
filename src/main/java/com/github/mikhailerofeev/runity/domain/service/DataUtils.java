@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+import java.lang.NoSuchMethodException;
 
 /**
  * @author m-erofeev
@@ -47,6 +48,10 @@ public class DataUtils {
         paramValue = SPACES.matcher(paramValue).replaceAll(" ");
         paramValue = StringUtils.strip(paramValue, " ");
         return paramValue;
+    }
+
+    public static List<Map<String, String>> parseXmlToStructuredMap(List<String> params, BufferedReader bufferedReader) throws IOException, NoSuchMethodException {
+        throw new NoSuchMethodException();
     }
 
     public static void filterUnimportant(List<Map<String, String>> sourceEmployeesData, List<String> importantParams) {
