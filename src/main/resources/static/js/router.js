@@ -28,7 +28,11 @@ var Controller = Backbone.Router.extend({
     },
 
     search: function (query) {
-
+        var employeeCollection = new EmployeeCollection();
+        employeeCollection.url = employeeCollection.url + query;
+        employeeCollection.fetch({ async: false });
+        employeeCollectionView.model.set(employeeCollection.toJSON());
+        employeeCollectionView.render();
     }
 });
 

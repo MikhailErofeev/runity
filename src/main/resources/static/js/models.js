@@ -16,7 +16,8 @@ var Employee = Backbone.Model.extend({
 });
 
 var EmployeeCollection = Backbone.Collection.extend({
-
+    model: Employee,
+    url: 'http://localhost:8080/rest/v1/search/'
 });
 
 function loadEmployee(id) {

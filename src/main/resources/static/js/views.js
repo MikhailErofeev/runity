@@ -1,15 +1,9 @@
 var EmployeeView = Backbone.View.extend({
-//    el: '#content-container',
     model: new Employee(),
-
     initialize: function () {
         this.model.bind('change', this.render, this);
     },
-
     render: function () {
-//        console.log("start render employee view");
-//        console.log(this.model);
-
         if (this.template === undefined || this.template === null)
             this.template = _.template($('#employee-template').html());
 
@@ -17,15 +11,10 @@ var EmployeeView = Backbone.View.extend({
         disqusInit('http://localhost:8080#!/employee/' + this.model.get("id"));
         return this;
     }
-
 });
 
 var UploadView = Backbone.View.extend({
-
     render: function () {
-//        console.log("start render employee view");
-//        console.log(this.model);
-
         if (this.template === undefined || this.template === null)
             this.template = _.template($('#data-template').html());
 
@@ -33,8 +22,22 @@ var UploadView = Backbone.View.extend({
         disqusInit('http://localhost:8080#!/data');
         return this;
     }
+});
 
+var EmployeeCollectionView = Backbone.View.extend({
+    model: new EmployeeCollection(),
+    initialize: function () {
+//        this.model.bind('change', this.render, this);
+    },
+    render: function() {
+        if (this.template === undefined || this.template === null)
+            this.template = _.template($('#employee-collection-template').html());
+
+        $('#content-container').html(this.template(this.model));
+        return this;
+    }
 });
 
 var employeeView = new EmployeeView();
 var uploadView = new UploadView();
+var employeeCollectionView = new EmployeeCollectionView();
