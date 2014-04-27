@@ -1,6 +1,7 @@
 package com.github.mikhailerofeev.runity.domain.service;
 
 import com.github.mikhailerofeev.runity.domain.TestDataUtil;
+import com.github.mikhailerofeev.runity.domain.entities.DataPassport;
 import com.github.mikhailerofeev.runity.domain.entities.Employee;
 import com.github.mikhailerofeev.runity.domain.repository.DataPassportRepository;
 import com.github.mikhailerofeev.runity.domain.repository.EmployeeRepository;
@@ -74,7 +75,7 @@ public class DataUploadServiceTest {
         values = param2valueAndVersion.get("Район");
         assertNotNull(values.get(0).getVersionId());
         DataPassport passport = dataPassportRepository.findOne(values.get(0).getVersionId());
-        assertEquals(dataUtil.dataPassport.getAuthor(), passport.getAuthor());
+        assertEquals(testDataUtil.dataPassport.getAuthor(), passport.getAuthor());
     }
 
 
