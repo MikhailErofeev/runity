@@ -5,11 +5,11 @@ import com.github.mikhailerofeev.runity.domain.repository.EmployeeRepository;
 import com.github.mikhailerofeev.runity.domain.service.ParamRatingService;
 import com.github.mikhailerofeev.runity.domain.values.ParamValueWithVersionId;
 import com.google.common.collect.Maps;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,19 +33,14 @@ public class EmployeeController {
     }
 
     private void testFill() {
-        Employee testEmployee = employeeRepository.findByName("Борис Борисович Гребенщиков");
-        if (testEmployee == null) {
-            testEmployee = new Employee("Борис Борисович Гребенщиков");
-            testEmployee.addParam("Должность", new ParamValueWithVersionId("magic", "Это Бог, от него сияние исходит", true));
-            testEmployee.addParam("Статус", new ParamValueWithVersionId("magic", "Музыкант", false));
-            testEmployee.addParam("Образование", new ParamValueWithVersionId("magic", "инженер", true));
-            testEmployee.addParam("Город", new ParamValueWithVersionId("magic", "Санкт-Петебург", true));
-            testEmployee.addParam("ВУЗ", new ParamValueWithVersionId("magic", "ЛГУ матмех", true));
-            employeeRepository.save(testEmployee);
-        }
+        final Map<String, Pair<Integer, Integer>> map = Maps.newHashMap();
+        map.put("Отзывчивость", Pair.of(10,3));    
+        map.put("Профессионализм", Pair.of(15,9));    
+        map.put("Бескорыстность", Pair.of(5,0));        
         Employee testEmployee2 = employeeRepository.findByName("Понтий Пилат");
         if (testEmployee2 == null) {
             testEmployee2 = new Employee("Понтий Пилат");
+            testEmployee2.setParamRating(map);
             testEmployee2.addParam("Должность", new ParamValueWithVersionId("magic", "Прокурор", true));
             testEmployee2.addParam("Структура", new ParamValueWithVersionId("magic", "Прокуратура", true));
             testEmployee2.addParam("Город", new ParamValueWithVersionId("magic", "Иеарусалим", true));
@@ -55,7 +50,8 @@ public class EmployeeController {
         }
         Employee testEmployee3 = employeeRepository.findByName("Иван Ведров");
         if (testEmployee3 == null) {
-            testEmployee3 = new Employee("Робокоп");
+            testEmployee3 = new Employee("Иван Ведров");
+            testEmployee3.setParamRating(map);
             testEmployee3.addParam("Должность", new ParamValueWithVersionId("magic", "Участковый", true));
             testEmployee3.addParam("Структура", new ParamValueWithVersionId("magic", "Отдел полиции (милиции) № 43", true));
             testEmployee3.addParam("Район", new ParamValueWithVersionId("magic", "Петроградский", true));
@@ -66,6 +62,7 @@ public class EmployeeController {
         Employee testEmployee4 = employeeRepository.findByName("Аркадий Шварц");
         if (testEmployee4 == null) {
             testEmployee4 = new Employee("Аркадий Шварц");
+            testEmployee4.setParamRating(map);
             testEmployee4.addParam("Должность", new ParamValueWithVersionId("magic", "Участковый", true));
             testEmployee4.addParam("Структура", new ParamValueWithVersionId("magic", "Отдел полиции (милиции) № 43", true));
             testEmployee4.addParam("Район", new ParamValueWithVersionId("magic", "Петроградский", true));
@@ -77,6 +74,7 @@ public class EmployeeController {
         Employee testEmployee5 = employeeRepository.findByName("Сергей Безруков");
         if (testEmployee5 == null) {
             testEmployee5 = new Employee("Сергей Безруков");
+            testEmployee5.setParamRating(map);
             testEmployee5.addParam("Должность", new ParamValueWithVersionId("magic", "Участковый", true));
             testEmployee5.addParam("Структура", new ParamValueWithVersionId("magic", "Отдел полиции (милиции) № 43", true));
             testEmployee5.addParam("Район", new ParamValueWithVersionId("magic", "Петроградский", true));
@@ -107,7 +105,7 @@ public class EmployeeController {
     @RequestMapping(value = "/{id}/{param}/{like}", method = RequestMethod.GET)
     @ResponseBody
     public Employee paramRatingSet(@PathVariable("id") String id, @PathVariable("param") String param,
-                                              @PathVariable("like") boolean like) throws Exception {
+                                   @PathVariable("like") boolean like) throws Exception {
         return paramRatingService.upRatingParam(id, param, like);
     }
 
