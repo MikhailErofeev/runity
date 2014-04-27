@@ -1,6 +1,6 @@
 package com.github.mikhailerofeev.runity.domain.values;
 
-import com.github.mikhailerofeev.runity.domain.DataUtil;
+import com.github.mikhailerofeev.runity.domain.TestDataUtil;
 import com.github.mikhailerofeev.runity.domain.entities.Employee;
 import com.github.mikhailerofeev.runity.domain.repository.EmployeeRepository;
 import com.github.mikhailerofeev.runity.server.Application;
@@ -36,7 +36,7 @@ public class PredicateFactoryTest {
     EmployeeRepository employeeRepository;
 
     @Autowired
-    DataUtil dataUtil;
+    TestDataUtil dataUtil;
 
     @Autowired
     MongoTemplate mongoTemplate;
