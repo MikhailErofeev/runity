@@ -69,7 +69,7 @@ public class EmployeeController {
             testEmployee4.addParam("Структура", new ParamValueWithVersionId("magic", "Отдел полиции (милиции) № 43", true));
             testEmployee4.addParam("Район", new ParamValueWithVersionId("magic", "Петроградский", true));
             testEmployee4.addParam("Город", new ParamValueWithVersionId("magic", "Санкт-Петербург", true));
-            testEmployee4.addParam("photo", new ParamValueWithVersionId("magic", "http://i2.guns.ru/forums/icons/attachments/15_001326_000016_11238.jpg", true));
+            testEmployee4.addParam("photo", new ParamValueWithVersionId("magic", "http://www.kp.ru/f/4/image/20/71/397120.jpg", true));
             employeeRepository.save(testEmployee4);
         }
 
