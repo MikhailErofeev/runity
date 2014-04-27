@@ -114,7 +114,7 @@ public class Employee {
         return paramRating;
     }
 
-    public void addParamRating(String param) {
+    public void initParamRating(String param) {
         this.paramRating.put(param, Pair.of(0, 0));
     }
 

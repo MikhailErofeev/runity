@@ -40,7 +40,7 @@ public class ParamRatingService {
         Map<String, Pair<Integer, Integer>> paramsRating = employee.getParamRating();
 
         if(!paramsRating.containsKey(param)) {
-            employee.addParamRating(param);
+            employee.initParamRating(param);
         }
         return employeeRepository.save(employee);
     }
