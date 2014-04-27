@@ -59,7 +59,7 @@ public class UploadController {
             dataUploadService.structuresUpload(niceCsv, "name", passport);
         }
 
-        return "/rest/v1/employee/";
+        return "/";
     }
 
     private void addConstants(Map<String, String> additionalConstants, List<Map<String, String>> niceCsv) {
