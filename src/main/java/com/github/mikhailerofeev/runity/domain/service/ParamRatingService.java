@@ -48,6 +48,7 @@ public class ParamRatingService {
 
         if(!paramsRating.containsKey(param)) {
             structure.addParamRating(param);
+            return structureRepository.save(structure);
         }
 
         if(like){
