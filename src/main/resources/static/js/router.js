@@ -8,7 +8,8 @@ var Controller = Backbone.Router.extend({
         "": "main",
         "#": "main",
         "!/data": "data",
-        "!/employee/:person": "employee"
+        "!/employee/:person": "employee",
+        "!/search/:query": "search"
     },
 
     main: function () {
@@ -24,6 +25,10 @@ var Controller = Backbone.Router.extend({
     employee: function (employeeID) {
         var employeeLoaded = loadEmployee(employeeID);
         employeeView.model.set(employeeLoaded);
+    },
+
+    search: function (query) {
+
     }
 });
 

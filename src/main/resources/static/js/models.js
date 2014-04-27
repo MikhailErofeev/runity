@@ -15,6 +15,10 @@ var Employee = Backbone.Model.extend({
     }
 });
 
+var EmployeeCollection = Backbone.Collection.extend({
+
+});
+
 function loadEmployee(id) {
     var employee = new Employee({id: id});
     employee.fetch({async: false});

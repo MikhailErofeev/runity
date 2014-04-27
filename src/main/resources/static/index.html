@@ -52,11 +52,10 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="thumbnail">
-                    <% if (has('photo')) { %>
-                    <img src="<%= get(photo) %>" alt="171x180">
+                    <% if ('photo' in get('param2valueAndVersion')) { %>
+                        <img src="<%= get('param2valueAndVersion')['photo'][0]['value'] %>" alt="171x180">
                     <% } else { %>
-                    <img src="http://img1.wikia.nocookie.net/__cb20081222131347/ru.starwars/images/0/03/Palpatine_Naboo.jpg"
-                         alt="171x180">
+                        <img src="http://img1.wikia.nocookie.net/__cb20081222131347/ru.starwars/images/0/03/Palpatine_Naboo.jpg" alt="171x180">
                     <% } %>
                 </div>
             </div>
@@ -64,23 +63,30 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2><a href="#!/employee/<%= get('id') %>"><%= get('name') %></a><br/>
-                            <small><%= get('param2valueAndVersion')['post'][0]['value'] %></small>
+                            <% if ('post' in get('param2valueAndVersion')) { %>
+                                <small><%= get('param2valueAndVersion')['post'][0]['value'] %></small>
+                            <% } else if ('Должность' in get('param2valueAndVersion')) { %>
+                                <small><%= get('param2valueAndVersion')['Должность'][0]['value'] %></small>
+                            <% }; %>
                         </h2>
                     </div>
                 </div>
                 <% for (var attribute in get('param2valueAndVersion')) { %>
-                <% if (attribute == 'post') continue; %>
-                <% if (get('param2valueAndVersion')[attribute][0]['actual']) {%>
-                <div class="row">
-                    <div class="col-md-4">
-                        <%= attribute %>
-                    </div>
-                    <div class="col-md-8">
-                        <% if (get('param2valueAndVersion')[attribute][0]['actual']) %>
-                        <%= get('param2valueAndVersion')[attribute][0]['value'] %>
-                    </div>
-                </div>
-                <% }}; %>
+                    <% if (attribute == 'post' || attribute == 'photo') continue; %>
+                    <% for (var index in get('param2valueAndVersion')[attribute]) { %>
+                        <% var item = get('param2valueAndVersion')[attribute][index]; %>
+                        <% if (item['actual']) {%>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <%= attribute %>
+                            </div>
+                            <div class="col-md-8">
+                                <abbr title="version: <%= item['versionId'] %>">
+                                    <%= item['value'] %>
+                                </abbr>
+                            </div>
+                        </div>
+                <% }}}; %>
             </div>
         </div>
 
@@ -91,6 +97,8 @@
         </div>
     </div>
 </script>
+
+
 
 <script id="data-template" type="text/template">
     <div class="col-md-offset-2 col-md-8">
