@@ -128,7 +128,7 @@ public class Employee {
 
     private void alterRating(String param, int difference) {
         Pair<Integer, Integer> rating = this.paramRating.get(param);
-        Pair<Integer, Integer> newRating = (difference < 0) ?
+        Pair<Integer, Integer> newRating = (difference > 0) ?
                 Pair.of(rating.getKey() + difference, rating.getValue()) : Pair.of(rating.getKey(), rating.getValue() + difference);
         this.paramRating.remove(param);
         this.paramRating.put(param, newRating);
