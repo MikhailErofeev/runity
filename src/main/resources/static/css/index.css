@@ -5,3 +5,7 @@ body {
 #employee-search-input {
     width: 400px;
 }
+
+.input-group.main-search {
+    margin-top: 40%;
+}

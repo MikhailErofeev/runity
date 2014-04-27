@@ -1,3 +1,13 @@
+var MainView = Backbone.View.extend({
+   render: function() {
+       if (this.template === undefined || this.template === null)
+           this.template = _.template($('#main').html());
+
+       $('#content-container').html(this.template());
+       return this;
+   }
+});
+
 var EmployeeView = Backbone.View.extend({
     model: new Employee(),
     initialize: function () {
@@ -38,6 +48,7 @@ var EmployeeCollectionView = Backbone.View.extend({
     }
 });
 
+var mainView = new MainView();
 var employeeView = new EmployeeView();
 var uploadView = new UploadView();
 var employeeCollectionView = new EmployeeCollectionView();

@@ -13,8 +13,7 @@ var Controller = Backbone.Router.extend({
     },
 
     main: function () {
-        console.log("at main");
-        disqusInit('http://localhost:8080');
+        mainView.render();
     },
 
     data: function () {
@@ -49,6 +48,24 @@ $(document).ready(function () {
             $('#employee-search-button').attr('href', '#!/search/' + inputValue);
         } else {
             $('#employee-search-button').attr('href', '#');
+        }
+    });
+
+    $('#employee-search-button').mouseover(function() {
+        var inputValue = $('#employee-search-input').val();
+        if (inputValue.length != 0) {
+            $('#employee-search-button').attr('href', '#!/search/' + inputValue);
+        } else {
+            $('#employee-search-button').attr('href', '#');
+        }
+    });
+
+    $('#main-search-button').mouseover(function() {
+        var inputValue = $('#main-search-input').val();
+        if (inputValue.length != 0) {
+            $('#main-search-button').attr('href', '#!/search/' + inputValue);
+        } else {
+            $('#main-search-button').attr('href', '#');
         }
     });
 });
