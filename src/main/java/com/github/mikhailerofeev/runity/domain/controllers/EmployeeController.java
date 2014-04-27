@@ -110,4 +110,10 @@ public class EmployeeController {
                                               @PathVariable("like") boolean like) throws Exception {
         return paramRatingService.upRatingParam(id, param, like);
     }
+
+    @RequestMapping(value = "/{id}/{param}", method = RequestMethod.GET)
+    @ResponseBody
+    public Employee paramRatingGet(@PathVariable("id") String id, @PathVariable("param") String param) throws Exception {
+        return paramRatingService.getRatingOfParam(id, param);
+    }
 }

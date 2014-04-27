@@ -23,14 +23,7 @@ public class ParamRatingService {
 
 
     public Employee upRatingParam(String id, String param, boolean like) throws Exception {
-        Employee employee = employeeRepository.findOne(id);
-        if(employee == null) throw new NullPointerException(id);
-
-        Map<String, Pair<Integer, Integer>> paramsRating = employee.getParamRating();
-
-        if(!paramsRating.containsKey(param)) {
-            employee.addParamRating(param);
-        }
+        Employee employee = getRatingOfParam(id, param);
 
         if(like){
             employee.increaseParamRating(param);
@@ -39,6 +32,19 @@ public class ParamRatingService {
         }
         return employeeRepository.save(employee);
     }
+
+    public Employee getRatingOfParam(String id, String param) throws Exception {
+        Employee employee = employeeRepository.findOne(id);
+        if(employee == null) throw new NullPointerException(id);
+
+        Map<String, Pair<Integer, Integer>> paramsRating = employee.getParamRating();
+
+        if(!paramsRating.containsKey(param)) {
+            employee.addParamRating(param);
+        }
+        return employeeRepository.save(employee);
+    }
+
 
     public Structure upRatingParamStructure(String id, String param, boolean like) throws Exception {
         Structure structure = structureRepository.findOne(id);
