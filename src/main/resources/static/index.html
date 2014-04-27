@@ -92,6 +92,20 @@
                                 </a>
                             </div>
                     <% }}}; %>
+                    <br>
+                    <% var attrItems = ["Отзывчивость", "Бескорыстность","Эффективность"]; %>
+                    <% for (var index in attrItems) { %>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <%= attrItems[index] %><br>
+                        </div>
+                        <div class="col-md-8">
+                            <% var ratingVars = get() %>
+                            0 like 1 dislike <br>
+                        </div>
+                    </div>
+                    <% }; %>
+
                 </div>
             </div>
 
