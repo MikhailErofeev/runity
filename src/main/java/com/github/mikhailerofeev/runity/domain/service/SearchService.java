@@ -2,6 +2,7 @@ package com.github.mikhailerofeev.runity.domain.service;
 
 import com.github.mikhailerofeev.runity.domain.entities.Employee;
 import com.github.mikhailerofeev.runity.domain.repository.EmployeeRepository;
+import com.github.mikhailerofeev.runity.domain.values.PredicateFactory;
 import com.github.mikhailerofeev.runity.domain.values.WeakPredicate;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
@@ -21,7 +22,7 @@ public class SearchService {
     EmployeeRepository employeeRepository;
 
     public List<Employee> search(String query) {
-        Predicate<Employee> predicate = new WeakPredicate(query);
+        Predicate<Employee> predicate = PredicateFactory.create(query);
         final List<Employee> employees = employeeRepository.findAll();
         return Lists.newArrayList(Collections2.filter(employees, predicate));
     }

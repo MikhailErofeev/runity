@@ -37,7 +37,9 @@ public class EqPredicate implements Predicate<Employee> {
             if (StringUtils.equals(this.key, "versionId")) {
                 return checkForVersionIDEquals(employeeFields);
             }
-
+            if(employeeFields.get(key) == null){
+                return false;
+            }
             for (ParamValueWithVersionId paramValueWithVersionId : employeeFields.get(key)) {
                 if (StringUtils.equals(paramValueWithVersionId.getValue(), this.value))
                     return true;
@@ -50,6 +52,9 @@ public class EqPredicate implements Predicate<Employee> {
 
             if (StringUtils.equals(this.key, "versionId")) {
                 return !checkForVersionIDEquals(employeeFields);
+            }
+            if(employeeFields.get(key) == null){
+                return false;
             }
 
             for (ParamValueWithVersionId paramValueWithVersionId : employeeFields.get(key)) {

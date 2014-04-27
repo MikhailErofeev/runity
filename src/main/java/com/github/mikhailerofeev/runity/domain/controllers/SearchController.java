@@ -6,6 +6,7 @@ import com.github.mikhailerofeev.runity.domain.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class SearchController {
     SearchService searchService;
 
     @RequestMapping(value = "/{query}")
+    @ResponseBody
     public List<Employee> result(@PathVariable("query") String query) {
         return searchService.search(query);
     }
