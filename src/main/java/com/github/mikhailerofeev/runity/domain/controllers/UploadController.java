@@ -39,7 +39,7 @@ public class UploadController {
     DataPassportRepository dataPassportRepository;
 
     @RequestMapping(value = "", headers = "content-type=multipart/*", method = RequestMethod.POST)
-    public void upload(WebRequest webRequest, @RequestParam("csv") MultipartFile multipartFile) throws IOException, ServletException {
+    public String upload(WebRequest webRequest, @RequestParam("csv") MultipartFile multipartFile) throws IOException, ServletException {
         final String author = webRequest.getParameter("author").trim();
         final List<String> allColumns = splitByLines(webRequest.getParameter("allColumns"));
         final List<String> importantColumns = splitByLines(webRequest.getParameter("importantColumns"));
@@ -50,11 +50,10 @@ public class UploadController {
         final BufferedReader csvReader = new BufferedReader(new InputStreamReader(multipartFile.getInputStream()));
         final List<Map<String, String>> niceCsv = DataUtils.parseCsvToStructuredMap(allColumns, csvReader);
         final DataPassport passport = dataPassportRepository.save(new DataPassport(author, url, description, DateTime.now()));
-
         DataUtils.filterUnimportant(niceCsv, importantColumns);
         addConstants(additionalConstants, niceCsv);
         dataUploadService.employeesUpload(niceCsv, "name", passport);
-
+        return "/rest/v1/employee/";
     }
 
     private void addConstants(Map<String, String> additionalConstants, List<Map<String, String>> niceCsv) {
