@@ -118,6 +118,13 @@ public class Employee {
     public void addParamRating(String param) {
         this.paramRating.put(param, Pair.of(0, 0));
     }
+    public void setParamRating(Map<String, Pair<Integer, Integer>> paramRating) {
+        if(paramRating == null) {
+            this.paramRating = Maps.newHashMap();
+        }else{
+            this.paramRating = paramRating;
+        }
+    }
 
     public void increaseParamRating(String param) {
         Pair<Integer, Integer> rating = this.paramRating.get(param);
